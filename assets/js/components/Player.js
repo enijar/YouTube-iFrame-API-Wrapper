@@ -37,7 +37,7 @@ var Player = function () {
 
     this.play = function () {
         if (that.loaded && (that.playerState === 2 || that.playerState === -1)) {
-            that.player.playVideo();
+            that.video.play();
             toggle(that.elements.play).hide();
             toggle(that.elements.thumb).hide();
         }
@@ -45,16 +45,44 @@ var Player = function () {
 
     this.pause = function () {
         if (that.loaded && that.playerState === 1) {
-            that.player.pauseVideo();
+            that.video.pause();
             toggle(that.elements.play).show();
+        }
+    };
+
+    this.video = {
+        play: function() {
+            return that.player['playVideo']();
+        },
+        pause: function() {
+            return that.player['pauseVideo']();
+        },
+        mute: function() {
+            return that.player['mute']();
+        },
+        unMute: function() {
+            return that.player['unMute']();
+        },
+        seek: function(time) {
+            return that.player['seekTo'](time);
+        },
+        quality: function(quality) {
+            return that.player['setPlaybackQuality'](quality);
+        },
+        duration: function() {
+            return that.player['getDuration']();
+        },
+        currentTime: function() {
+            return that.player['getCurrentTime']();
         }
     };
 
     this.onPlayerReady = function (e) {
         events();
-        that.player.setPlaybackQuality(that.options.quality);
-        that.player.mute();
-        that.player.playVideo();
+
+        that.video.quality(that.options.quality);
+        that.video.mute();
+        that.video.play();
     };
 
     this.onPlayerStateChange = function (e) {
@@ -65,9 +93,9 @@ var Player = function () {
             that.seeking = false;
 
             setTimeout(function () {
-                that.player.unMute();
-                that.player.seekTo(0);
-                that.player.pauseVideo();
+                that.video.pause();
+                that.video.seek(0);
+                that.video.unMute();
             }, 350);
         }
 
@@ -96,12 +124,14 @@ var Player = function () {
 
         if (that.playerState === 0) {
             that.reset = true;
+
             clearInterval(that.playerProgressBarInterval);
             toggle(that.elements.thumb).show();
             toggle(that.elements.play).show();
             toggle(that.elements.progress).hide();
-            that.player.seekTo(0);
-            that.player.pauseVideo();
+
+            that.video.pause();
+            that.video.seek(0);
             that.elements.progressBar.css({width: '100%'});
         }
 
@@ -119,7 +149,7 @@ var Player = function () {
     };
 
     this.changeVideoTime = function (e) {
-        if (that.loaded && (that.player.getDuration() !== that.player.getCurrentTime())) {
+        if (that.loaded && (that.video.duration() !== that.video.currentTime())) {
             that.seeking = true;
 
             var percentage = (100 / $(this).closest('.progress').width()) * (e.pageX - $(this).parent().offset().left);
@@ -132,7 +162,7 @@ var Player = function () {
 
     var updateProgressBar = function () {
         that.playerProgressBarInterval = setInterval(function () {
-            var percentage = ((100 / that.player.getDuration()) * that.player.getCurrentTime());
+            var percentage = ((100 / that.video.duration()) * that.video.currentTime());
             that.elements.progressBar.css({width: percentage + '%'});
         }, (1000 / that.options.fps));
     };
