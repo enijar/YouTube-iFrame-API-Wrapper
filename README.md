@@ -2,7 +2,7 @@
 A convenient way to add custom functionality and styles to YouTube's video player using the iFrame API 
 provided by YouTube.
 
-> *Warning* Still in development. Please report any bugs or issues.
+> ***Warning*** Still in development. Please report any bugs or issues.
 
 ### Basic Usage
 
