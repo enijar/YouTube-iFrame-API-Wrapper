@@ -45,3 +45,9 @@ function onYouTubeIframeAPIReady() {
     (new Player).init({id: 'ShUyfk4QB-8'});
 }
 ```
+
+### Example Player Theme
+
+![Holding Screen](https://i.imgur.com/XXHTUPd.png)
+
+![Playing Screen](https://i.imgur.com/tf3TAEt.png)
