@@ -297,7 +297,6 @@ var Player = function () {
     };
 
     var loadPlayer = function () {
-        toggle(that.elements.preload).hide();
         toggle(that.elements.thumb).show();
 
         that.player = new YT.Player('video-' + that.options.id, {
