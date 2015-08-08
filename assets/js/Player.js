@@ -186,21 +186,15 @@ var Player = function () {
     };
 
     var toggleClass = function (element, className) {
-        var regex = new RegExp('\\b' + className + '\\b/');
-
-        if (element.className.match(regex) === null) {
-            element.className += ' ' + className;
+        if(element.classList.contains(className)) {
+            element.classList.remove(className);
         } else {
-            element.className = element.className.split(className).join('');
+            element.classList.add(className);
         }
     };
 
     var addClass = function (element, className) {
-        var regex = new RegExp('\\b' + className + '\\b/');
-
-        if (element.className.match(regex) === null) {
-            element.className += ' ' + className;
-        }
+        element.classList.add(className);
     };
 
     var removeClass = function (element, className) {
