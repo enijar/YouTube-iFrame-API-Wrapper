@@ -2,8 +2,8 @@ var Player = function () {
 
     // TODO: Add mute button.
     // TODO: Add quality control (480p, 720p, etc.).
-    // TODO: Make progress bar draggable.
     // TODO: Add user callbacks.
+    // TODO: Add second progress bar to show buffered amount.
 
     const UNSTARTED = -1;
     const ENDED = 0;
@@ -124,6 +124,11 @@ var Player = function () {
                 toggle(that.elements.play).hide();
                 toggle(that.elements.progress).show();
             }
+
+            if (that.seeking) {
+                that.seeking = false;
+                updateProgressBar();
+            }
         }
 
         if (that.video.state === PAUSED) {
@@ -161,11 +166,25 @@ var Player = function () {
     };
 
     this.changeVideoTime = function (e) {
-        if (that.loaded && (that.video.duration() !== that.video.currentTime())) {
+        clearInterval(that.playerProgressBarInterval);
+
+        if (e.type === 'mousedown' && !that.seeking) {
             that.seeking = true;
+            moveProgressBar(e);
+        }
 
-            var offsetLeft = e.clientX - this.parentNode.getBoundingClientRect().left;
+        if (e.type === 'mouseup' && that.seeking) {
+            that.seeking = false;
+        }
 
+        if (e.type === 'mousemove' && that.seeking) {
+            moveProgressBar(e);
+        }
+    };
+
+    var moveProgressBar = function(e) {
+        if (that.loaded && (that.video.duration() !== that.video.currentTime())) {
+            var offsetLeft = e.clientX - that.elements.progress.getBoundingClientRect().left;
             var percentage = (100 / that.elements.progress.offsetWidth) * offsetLeft;
             var time = (that.video.duration() / 100) * percentage;
 
@@ -226,7 +245,9 @@ var Player = function () {
 
     var events = function () {
         that.elements.mask.addEventListener('click', that.toggleState);
-        that.elements.progress.addEventListener('click', that.changeVideoTime);
+        that.elements.progress.addEventListener('mousedown', that.changeVideoTime);
+        document.addEventListener('mousemove', that.changeVideoTime);
+        document.addEventListener('mouseup', that.changeVideoTime);
     };
 
 };
