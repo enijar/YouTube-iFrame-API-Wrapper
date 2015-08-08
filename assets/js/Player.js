@@ -78,9 +78,10 @@ var Player = function () {
 
     this.play = function () {
         if (that.loaded && (that.video.state === PAUSED || that.video.state === UNSTARTED || that.seeking)) {
-            that.video.play();
+            addClass(that.elements.mask.parentNode, 'playing');
             toggle(that.elements.play).hide();
             toggle(that.elements.thumb).hide();
+            that.video.play();
         }
     };
 
@@ -88,6 +89,7 @@ var Player = function () {
         if (that.loaded && that.video.state === PLAYING) {
             clearInterval(that.playerProgressBarInterval);
             that.video.pause();
+            removeClass(that.elements.mask.parentNode, 'playing');
             toggle(that.elements.play).show();
         }
     };
@@ -154,10 +156,8 @@ var Player = function () {
     this.toggleState = function () {
         if (that.loaded) {
             if (that.video.state === PLAYING) {
-                removeClass(this.parentNode, 'playing');
                 that.pause();
             } else {
-                addClass(this.parentNode, 'playing');
                 that.play();
             }
         }
