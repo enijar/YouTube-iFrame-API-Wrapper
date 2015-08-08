@@ -21,7 +21,7 @@ var Player = function () {
     this.callbackObject = {};
 
     this.options = {
-        fps: 24,
+        fps: 12,
         quality: 'hd720',
         parameters: {
             hd: 1,
@@ -48,7 +48,8 @@ var Player = function () {
 
         that.callbackObject = {
             play: that.play,
-            pause: that.pause
+            pause: that.pause,
+            time: that.video.currentTime
         };
     };
 
@@ -238,7 +239,7 @@ var Player = function () {
             moveProgressBar(e);
 
             if(that.options['onSeeking']) {
-                that.options['onSeeking'](that.callbackObject, that.video.currentTime());
+                that.options['onSeeking'](that.callbackObject);
             }
         }
     };
@@ -277,7 +278,7 @@ var Player = function () {
                 that.elements.progressBar.style.width = percentage + '%';
 
                 if(that.options['onPlaying']) {
-                    that.options['onPlaying'](that.callbackObject, that.video.currentTime());
+                    that.options['onPlaying'](that.callbackObject);
                 }
             }
         }, (1000 / that.options.fps));
