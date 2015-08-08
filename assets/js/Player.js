@@ -172,9 +172,11 @@ var Player = function () {
             moveProgressBar(e);
         }
 
-        if (e.type === 'mouseup') {
-            that.play();
-            that.seeking = false;
+        if (e.type === 'mouseup' || e.type === 'mouseleave') {
+            if(that.seeking) {
+                that.play();
+                that.seeking = false;
+            }
         }
 
         if (e.type === 'mousemove' && that.seeking) {
@@ -275,6 +277,7 @@ var Player = function () {
         that.elements.play.addEventListener('click', that.toggleState);
         that.elements.progress.addEventListener('mousedown', that.changeVideoTime);
         that.elements.progress.addEventListener('mousemove', that.changeVideoTime);
+        that.elements.progress.addEventListener('mouseleave', that.changeVideoTime);
         that.elements.progress.addEventListener('mouseup', that.changeVideoTime);
     };
 
