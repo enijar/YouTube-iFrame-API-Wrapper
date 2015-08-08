@@ -24,6 +24,8 @@ var Player = function () {
     this.options = {
         fps: 24,
         quality: 'hd720',
+        mutedClass: 'glyphicon-volume-off',
+        unMutedClass: 'glyphicon-volume-up',
         parameters: {
             hd: 1,
             controls: 0,
@@ -55,6 +57,9 @@ var Player = function () {
         },
         pause: function () {
             return that.player['pauseVideo']();
+        },
+        isMuted: function () {
+            return that.player['isMuted']();
         },
         mute: function () {
             return that.player['mute']();
@@ -161,6 +166,20 @@ var Player = function () {
                 that.pause();
             } else {
                 that.play();
+            }
+        }
+    };
+
+    this.toggleMute = function () {
+        if (that.loaded) {
+            if(that.video.isMuted()) {
+                that.video.unMute();
+                removeClass(that.elements.mute.children[0], that.options.mutedClass);
+                addClass(that.elements.mute.children[0], that.options.unMutedClass);
+            } else {
+                that.video.mute();
+                removeClass(that.elements.mute.children[0], that.options.unMutedClass);
+                addClass(that.elements.mute.children[0], that.options.mutedClass);
             }
         }
     };
@@ -273,6 +292,7 @@ var Player = function () {
     var events = function () {
         that.elements.mask.addEventListener('click', that.toggleState);
         that.elements.play.addEventListener('click', that.toggleState);
+        that.elements.mute.addEventListener('click', that.toggleMute);
         that.elements.progress.addEventListener('mousedown', that.changeVideoTime);
         that.elements.progress.addEventListener('mousemove', that.changeVideoTime);
         that.elements.progress.addEventListener('mouseleave', that.changeVideoTime);
