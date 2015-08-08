@@ -92,7 +92,7 @@ var Player = function () {
         }
     };
 
-    this.onPlayerReady = function (e) {
+    this.onPlayerReady = function () {
         events();
 
         that.video.quality(that.options.quality);
@@ -153,7 +153,7 @@ var Player = function () {
         console.log(that.video.state);
     };
 
-    this.toggleState = function (e) {
+    this.toggleState = function () {
         if (that.loaded) {
             if (that.video.state === 1) {
                 that.pause();
