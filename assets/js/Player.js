@@ -114,8 +114,6 @@ var Player = function () {
         }
 
         if (that.video.state === PLAYING) {
-            updateProgressBar();
-
             if (that.reset) {
                 that.reset = false;
             }
