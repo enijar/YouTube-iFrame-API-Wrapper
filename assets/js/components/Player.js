@@ -1,4 +1,11 @@
 var Player = function () {
+
+    // TODO: Add mute button.
+    // TODO: Add quality control (480p, 720p, etc.).
+    // TODO: Make progress bar draggable.
+    // TODO: Remove jQuery dependency.
+    // TODO: Add user callbacks.
+
     const UNSTARTED = -1;
     const ENDED = 0;
     const PLAYING = 1;
@@ -7,6 +14,7 @@ var Player = function () {
     const CUED = 5;
 
     var that = this;
+
     this.loaded = false;
     this.done = false;
     this.seeking = false;
@@ -221,4 +229,5 @@ var Player = function () {
         that.elements.mask.on('click', that.toggleState);
         that.elements.progress.on('click', that.changeVideoTime);
     };
+
 };
