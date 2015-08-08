@@ -15,7 +15,6 @@ var Player = function () {
     var that = this;
 
     this.loaded = false;
-    this.done = false;
     this.seeking = false;
     this.reset = false;
     this.playerProgressBarInterval = undefined;
@@ -103,6 +102,8 @@ var Player = function () {
     this.onPlayerStateChange = function (e) {
         that.video.state = e.data;
 
+        console.log(that.video.state);
+
         if (that.video.state === BUFFERING && !that.loaded) {
             that.loaded = true;
             that.seeking = false;
@@ -181,7 +182,7 @@ var Player = function () {
         }
     };
 
-    var moveProgressBar = function(e) {
+    var moveProgressBar = function (e) {
         if (that.loaded && (that.video.duration() !== that.video.currentTime())) {
             var offsetLeft = e.clientX - that.elements.progress.getBoundingClientRect().left;
             var percentage = (100 / that.elements.progress.offsetWidth) * offsetLeft;
@@ -194,7 +195,7 @@ var Player = function () {
 
     var updateProgressBar = function () {
         that.playerProgressBarInterval = setInterval(function () {
-            if(!that.seeking && that.video.state === PLAYING) {
+            if (!that.seeking && that.video.state === PLAYING) {
                 var percentage = ((100 / that.video.duration()) * that.video.currentTime());
                 that.elements.progressBar.style.width = percentage + '%';
             }
@@ -206,20 +207,8 @@ var Player = function () {
 
         var thumb = new Image;
         thumb.src = 'http://img.youtube.com/vi/' + that.options.id + '/maxresdefault.jpg';
-        thumb.onload = function () {
-            toggle(that.elements.preload).hide();
-            toggle(that.elements.thumb).show();
-            toggle(that.elements.play).show();
-
-            that.player = new YT.Player('video-' + that.options.id, {
-                videoId: that.options.id,
-                playerVars: that.options.parameters,
-                events: {
-                    onReady: that.onPlayerReady,
-                    onStateChange: that.onPlayerStateChange
-                }
-            });
-        };
+        thumb.onerror = loadPlayer;
+        thumb.onload = loadPlayer;
     };
 
     var toggle = function (element) {
@@ -233,22 +222,38 @@ var Player = function () {
         };
     };
 
+    var loadPlayer = function(e) {
+        toggle(that.elements.preload).hide();
+        toggle(that.elements.thumb).show();
+        toggle(that.elements.play).show();
+
+        that.player = new YT.Player('video-' + that.options.id, {
+            videoId: that.options.id,
+            playerVars: that.options.parameters,
+            events: {
+                onReady: that.onPlayerReady,
+                onStateChange: that.onPlayerStateChange
+            }
+        });
+
+        console.log(e);
+    };
+
     var setElements = function () {
-        that.elements.player = that.options.player || document.getElementById(that.options.id);
-        that.elements.mask = that.options.mask || that.elements.player.querySelector('.mask');
-        that.elements.play = that.options.play || that.elements.player.querySelector('.play');
-        that.elements.thumb = that.options.thumb || that.elements.player.querySelector('.thumb');
-        that.elements.iframe = that.options.iframe || that.elements.player.querySelector('.iframe');
-        that.elements.preload = that.options.preload || that.elements.player.querySelector('.preload');
-        that.elements.progress = that.options.progress || that.elements.player.querySelector('.progress');
-        that.elements.progressBar = that.options.progressBar || that.elements.player.querySelector('.progress-bar');
+        that.elements.mask = that.options.mask || document.querySelector('#' + that.options.id + ' .mask');
+        that.elements.play = that.options.play || document.querySelector('#' + that.options.id + ' .play');
+        that.elements.thumb = that.options.thumb || document.querySelector('#' + that.options.id + ' .thumb');
+        that.elements.iframe = that.options.iframe || document.querySelector('#' + that.options.id + ' .iframe');
+        that.elements.preload = that.options.preload || document.querySelector('#' + that.options.id + ' .preload');
+        that.elements.progress = that.options.progress || document.querySelector('#' + that.options.id + ' .progress');
+        that.elements.progressBar = that.options.progressBar || document.querySelector('#' + that.options.id + ' .progress-bar');
     };
 
     var events = function () {
         that.elements.mask.addEventListener('click', that.toggleState);
         that.elements.progress.addEventListener('mousedown', that.changeVideoTime);
-        document.addEventListener('mousemove', that.changeVideoTime);
-        document.addEventListener('mouseup', that.changeVideoTime);
+        that.elements.progress.addEventListener('mousemove', that.changeVideoTime);
+        that.elements.progress.addEventListener('mouseup', that.changeVideoTime);
     };
 
 };

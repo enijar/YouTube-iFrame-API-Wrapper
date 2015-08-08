@@ -5852,7 +5852,8 @@ button.close {
     height: 15px;
     position: relative;
     z-index: 5;
-    cursor: pointer; }
+    cursor: pointer;
+    margin-bottom: 0; }
     .video-container .progress .progress-bar {
       background-color: #E62117;
       -webkit-transition: none;
