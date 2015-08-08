@@ -102,8 +102,6 @@ var Player = function () {
     this.onPlayerStateChange = function (e) {
         that.video.state = e.data;
 
-        console.log(that.video.state);
-
         if (that.video.state === BUFFERING && !that.loaded) {
             that.loaded = true;
             that.seeking = false;
@@ -235,8 +233,6 @@ var Player = function () {
                 onStateChange: that.onPlayerStateChange
             }
         });
-
-        console.log(e);
     };
 
     var setElements = function () {
