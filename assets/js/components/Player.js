@@ -1,6 +1,12 @@
 var Player = function () {
-    var that = this;
+    const UNSTARTED = -1;
+    const ENDED = 0;
+    const PLAYING = 1;
+    const PAUSED = 2;
+    const BUFFERING = 3;
+    const CUED = 5;
 
+    var that = this;
     this.loaded = false;
     this.done = false;
     this.seeking = false;
@@ -36,7 +42,7 @@ var Player = function () {
     };
 
     this.play = function () {
-        if (that.loaded && (that.playerState === 2 || that.playerState === -1)) {
+        if (that.loaded && (that.video.state === PAUSED || that.video.state === UNSTARTED)) {
             that.video.play();
             toggle(that.elements.play).hide();
             toggle(that.elements.thumb).hide();
@@ -44,35 +50,36 @@ var Player = function () {
     };
 
     this.pause = function () {
-        if (that.loaded && that.playerState === 1) {
+        if (that.loaded && that.video.state === PLAYING) {
             that.video.pause();
             toggle(that.elements.play).show();
         }
     };
 
     this.video = {
-        play: function() {
+        state: UNSTARTED,
+        play: function () {
             return that.player['playVideo']();
         },
-        pause: function() {
+        pause: function () {
             return that.player['pauseVideo']();
         },
-        mute: function() {
+        mute: function () {
             return that.player['mute']();
         },
-        unMute: function() {
+        unMute: function () {
             return that.player['unMute']();
         },
-        seek: function(time) {
+        seek: function (time) {
             return that.player['seekTo'](time);
         },
-        quality: function(quality) {
+        quality: function (quality) {
             return that.player['setPlaybackQuality'](quality);
         },
-        duration: function() {
+        duration: function () {
             return that.player['getDuration']();
         },
-        currentTime: function() {
+        currentTime: function () {
             return that.player['getCurrentTime']();
         }
     };
@@ -86,9 +93,9 @@ var Player = function () {
     };
 
     this.onPlayerStateChange = function (e) {
-        that.playerState = e.data;
+        that.video.state = e.data;
 
-        if (that.playerState === 3 && !that.loaded) {
+        if (that.video.state === BUFFERING && !that.loaded) {
             that.loaded = true;
             that.seeking = false;
 
@@ -99,7 +106,7 @@ var Player = function () {
             }, 350);
         }
 
-        if (that.playerState === 1) {
+        if (that.video.state === PLAYING) {
             updateProgressBar();
 
             if (that.reset) {
@@ -112,7 +119,7 @@ var Player = function () {
             }
         }
 
-        if (that.playerState === 2) {
+        if (that.video.state === PAUSED) {
             if (!that.seeking) {
                 toggle(that.elements.play).show();
 
@@ -122,7 +129,7 @@ var Player = function () {
             }
         }
 
-        if (that.playerState === 0) {
+        if (that.video.state === ENDED) {
             that.reset = true;
 
             clearInterval(that.playerProgressBarInterval);
@@ -135,12 +142,12 @@ var Player = function () {
             that.elements.progressBar.css({width: '100%'});
         }
 
-        console.log(that.playerState);
+        console.log(that.video.state);
     };
 
     this.toggleState = function (e) {
         if (that.loaded) {
-            if (that.playerState === 1) {
+            if (that.video.state === 1) {
                 that.pause();
             } else {
                 that.play();
@@ -153,9 +160,9 @@ var Player = function () {
             that.seeking = true;
 
             var percentage = (100 / $(this).closest('.progress').width()) * (e.pageX - $(this).parent().offset().left);
-            var time = (that.player.getDuration() / 100) * percentage;
+            var time = (that.video.duration() / 100) * percentage;
 
-            that.player.seekTo(time);
+            that.video.seek(time);
             that.elements.progressBar.css({width: percentage + '%'});
         }
     };
@@ -200,14 +207,14 @@ var Player = function () {
     };
 
     var getElements = function () {
-        that.elements.player        = that.options.player       || $('#' + that.options.id);
-        that.elements.mask          = that.options.mask         || that.elements.player.find('.mask');
-        that.elements.play          = that.options.play         || that.elements.player.find('.play');
-        that.elements.thumb         = that.options.thumb        || that.elements.player.find('.thumb');
-        that.elements.iframe        = that.options.iframe       || that.elements.player.find('.iframe');
-        that.elements.preload       = that.options.preload      || that.elements.player.find('.preload');
-        that.elements.progress      = that.options.progress     || that.elements.player.find('.progress');
-        that.elements.progressBar   = that.options.progressBar  || that.elements.player.find('.progress-bar');
+        that.elements.player = that.options.player || $('#' + that.options.id);
+        that.elements.mask = that.options.mask || that.elements.player.find('.mask');
+        that.elements.play = that.options.play || that.elements.player.find('.play');
+        that.elements.thumb = that.options.thumb || that.elements.player.find('.thumb');
+        that.elements.iframe = that.options.iframe || that.elements.player.find('.iframe');
+        that.elements.preload = that.options.preload || that.elements.player.find('.preload');
+        that.elements.progress = that.options.progress || that.elements.player.find('.progress');
+        that.elements.progressBar = that.options.progressBar || that.elements.player.find('.progress-bar');
     };
 
     var events = function () {
