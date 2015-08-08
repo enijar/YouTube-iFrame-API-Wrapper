@@ -1,7 +1,6 @@
 var Player = function () {
 
     // TODO: Add quality control (480p, 720p, etc.).
-    // TODO: Add second progress bar to show buffered amount.
     // TODO: Research why "Untrusted origin: chrome-extension://..." warning is logged. (Google Chrome Cast?)
 
     const UNSTARTED = -1;
@@ -21,7 +20,6 @@ var Player = function () {
     this.callbackObject = {};
 
     this.options = {
-        fps: 12,
         quality: 'hd720',
         parameters: {
             hd: 1,
@@ -50,6 +48,7 @@ var Player = function () {
             play: that.play,
             pause: that.pause,
             time: that.video.currentTime,
+            buffer: that.video.buffer,
             thumb: that.elements.thumb,
             iframe: that.elements.iframe,
             preload: that.elements.preload,
@@ -88,6 +87,9 @@ var Player = function () {
         },
         currentTime: function () {
             return that.player['getCurrentTime']();
+        },
+        buffer: function() {
+            return that.player['getVideoLoadedFraction']();
         }
     };
 
@@ -268,12 +270,13 @@ var Player = function () {
             if (!that.seeking && that.video.state === PLAYING) {
                 var percentage = ((100 / that.video.duration()) * that.video.currentTime());
                 that.elements.progressBar.style.width = percentage + '%';
+                that.elements.bufferBar.style.width = (that.video.buffer()*100) + '%';
 
                 if(that.options['onPlaying']) {
                     that.options['onPlaying'](that.callbackObject);
                 }
             }
-        }, (1000 / that.options.fps));
+        }, 1000);
     };
 
     var loadVideo = function () {
@@ -317,6 +320,7 @@ var Player = function () {
         that.elements.iframe = that.options.iframe || document.querySelector('#' + that.options.id + ' .iframe');
         that.elements.preload = that.options.preload || document.querySelector('#' + that.options.id + ' .preload');
         that.elements.progress = that.options.progress || document.querySelector('#' + that.options.id + ' .progress');
+        that.elements.bufferBar = that.options.bufferBar || document.querySelector('#' + that.options.id + ' .buffer-bar');
         that.elements.progressBar = that.options.progressBar || document.querySelector('#' + that.options.id + ' .progress-bar');
     };
 

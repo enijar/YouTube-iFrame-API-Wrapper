@@ -4424,7 +4424,7 @@ a.thumbnail.active {
   -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1); }
 
-.progress-bar {
+.progress-bar, .video-container .progress .buffer-bar {
   float: left;
   width: 0%;
   height: 100%;
@@ -4439,15 +4439,16 @@ a.thumbnail.active {
   -o-transition: width 0.6s ease;
   transition: width 0.6s ease; }
 
-.progress-striped .progress-bar,
+.progress-striped .progress-bar, .progress-striped .video-container .progress .buffer-bar, .video-container .progress .progress-striped .buffer-bar,
 .progress-bar-striped {
   background-image: -webkit-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: -o-linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-size: 40px 40px; }
 
-.progress.active .progress-bar,
-.progress-bar.active {
+.progress.active .progress-bar, .video-container .progress.active .buffer-bar,
+.progress-bar.active,
+.video-container .progress .active.buffer-bar {
   -webkit-animation: progress-bar-stripes 2s linear infinite;
   -o-animation: progress-bar-stripes 2s linear infinite;
   animation: progress-bar-stripes 2s linear infinite; }
@@ -5862,10 +5863,16 @@ button.close {
     z-index: 5;
     cursor: pointer;
     margin-bottom: 0; }
-    .video-container .progress .progress-bar {
-      background-color: #E62117;
+    .video-container .progress .progress-bar, .video-container .progress .buffer-bar, .video-container .progress .buffer-bar {
+      box-shadow: none;
       -webkit-transition: none;
       -o-transition: none;
       transition: none; }
+    .video-container .progress .progress-bar, .video-container .progress .buffer-bar {
+      background-color: #E62117; }
+    .video-container .progress .buffer-bar {
+      position: absolute;
+      z-index: -1;
+      background-color: #f6a5a0; }
 
 /*# sourceMappingURL=main.css.map */

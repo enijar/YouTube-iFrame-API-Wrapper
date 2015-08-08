@@ -101,9 +101,20 @@
     cursor: pointer;
     margin-bottom: 0;
 
+    .progress-bar, .buffer-bar {
+      box-shadow: none;
+      @include transition(none);
+    }
+
     .progress-bar {
       background-color: #E62117;
-      @include transition(none);
+    }
+
+    .buffer-bar {
+      @extend .progress-bar;
+      position: absolute;
+      z-index: -1;
+      background-color: lighten(#E62117, 30%);
     }
   }
 }
