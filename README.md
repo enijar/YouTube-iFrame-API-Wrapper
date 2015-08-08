@@ -56,12 +56,13 @@ function onYouTubeIframeAPIReady() {
 
 ### Method Callbacks
 
-There are 9 method callbacks that will get called on specific events. You can use these to hoot into 
+There are 10 method callbacks that will get called on specific events. You can use these to hoot into 
 these events and execute your own code.
 
 ```js
 (new Player).init({
     id: 'ShUyfk4QB-8',
+    onLoaded: function(player) {},
     onPlay: function(player) {},
     onPlaying: function(player) {},
     onPause: function(player) {},

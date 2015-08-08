@@ -133,6 +133,10 @@ var Player = function () {
             that.loaded = true;
             that.seeking = false;
 
+            if(that.options['onLoaded']) {
+                that.options['onLoaded'](that.callbackObject);
+            }
+
             setTimeout(function () {
                 that.video.pause();
                 that.video.seek(0);

@@ -5821,7 +5821,6 @@ button.close {
   .video-container .playing .mask {
     background-color: transparent; }
   .video-container .play, .video-container .mute {
-    display: block;
     z-index: 4;
     cursor: pointer;
     border-radius: 100%; }
