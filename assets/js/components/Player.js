@@ -200,13 +200,13 @@ var Player = function () {
     };
 
     var getElements = function () {
-        that.elements.player = $('#' + that.options.id);
-        that.elements.play = that.elements.player.find('.play');
-        that.elements.thumb = that.elements.player.find('.thumb');
-        that.elements.iframe = that.elements.player.find('.iframe');
-        that.elements.preload = that.elements.player.find('.preload');
-        that.elements.progress = that.elements.player.find('.progress');
-        that.elements.progressBar = that.elements.player.find('.progress-bar');
+        that.elements.player        = that.options.player       || $('#' + that.options.id);
+        that.elements.play          = that.options.play         || that.elements.player.find('.play');
+        that.elements.thumb         = that.options.thumb        || that.elements.player.find('.thumb');
+        that.elements.iframe        = that.options.iframe       || that.elements.player.find('.iframe');
+        that.elements.preload       = that.options.preload      || that.elements.player.find('.preload');
+        that.elements.progress      = that.options.progress     || that.elements.player.find('.progress');
+        that.elements.progressBar   = that.options.progressBar  || that.elements.player.find('.progress-bar');
     };
 
     var events = function () {
