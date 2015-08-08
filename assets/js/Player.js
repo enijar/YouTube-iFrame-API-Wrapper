@@ -150,8 +150,6 @@ var Player = function () {
             that.video.seek(0);
             that.elements.progressBar.style.width = '100%';
         }
-
-        console.log(that.video.state);
     };
 
     this.toggleState = function () {
@@ -170,6 +168,7 @@ var Player = function () {
         if (e.type === 'mousedown') {
             that.seeking = true;
             clearInterval(that.playerProgressBarInterval);
+            moveProgressBar(e);
         }
 
         if (e.type === 'mouseup') {
