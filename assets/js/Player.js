@@ -78,6 +78,7 @@ var Player = function () {
 
     this.play = function () {
         if (that.loaded && (that.video.state === PAUSED || that.video.state === UNSTARTED || that.seeking)) {
+            removeClass(that.elements.mask.parentNode, 'paused');
             addClass(that.elements.mask.parentNode, 'playing');
             toggle(that.elements.play).hide();
             toggle(that.elements.thumb).hide();
@@ -90,6 +91,7 @@ var Player = function () {
             clearInterval(that.playerProgressBarInterval);
             that.video.pause();
             removeClass(that.elements.mask.parentNode, 'playing');
+            addClass(that.elements.mask.parentNode, 'paused');
             toggle(that.elements.play).show();
         }
     };
@@ -245,6 +247,7 @@ var Player = function () {
         toggle(that.elements.preload).hide();
         toggle(that.elements.thumb).show();
         toggle(that.elements.play).show();
+        toggle(that.elements.mute).show();
 
         that.player = new YT.Player('video-' + that.options.id, {
             videoId: that.options.id,
@@ -259,6 +262,7 @@ var Player = function () {
     var setElements = function () {
         that.elements.mask = that.options.mask || document.querySelector('#' + that.options.id + ' .mask');
         that.elements.play = that.options.play || document.querySelector('#' + that.options.id + ' .play');
+        that.elements.mute = that.options.mute || document.querySelector('#' + that.options.id + ' .mute');
         that.elements.thumb = that.options.thumb || document.querySelector('#' + that.options.id + ' .thumb');
         that.elements.iframe = that.options.iframe || document.querySelector('#' + that.options.id + ' .iframe');
         that.elements.preload = that.options.preload || document.querySelector('#' + that.options.id + ' .preload');
