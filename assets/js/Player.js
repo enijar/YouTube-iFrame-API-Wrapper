@@ -153,9 +153,11 @@ var Player = function () {
 
     this.toggleState = function () {
         if (that.loaded) {
-            if (that.video.state === 1) {
+            if (that.video.state === PLAYING) {
+                removeClass(this.parentNode, 'playing');
                 that.pause();
             } else {
+                addClass(this.parentNode, 'playing');
                 that.play();
             }
         }
@@ -179,6 +181,28 @@ var Player = function () {
             clearInterval(that.playerProgressBarInterval);
             moveProgressBar(e);
         }
+    };
+
+    var toggleClass = function (element, className) {
+        var regex = new RegExp('\\b' + className + '\\b/');
+
+        if (element.className.match(regex) === null) {
+            element.className += ' ' + className;
+        } else {
+            element.className = element.className.split(className).join('');
+        }
+    };
+
+    var addClass = function (element, className) {
+        var regex = new RegExp('\\b' + className + '\\b/');
+
+        if (element.className.match(regex) === null) {
+            element.className += ' ' + className;
+        }
+    };
+
+    var removeClass = function (element, className) {
+        element.className = element.className.split(className).join('');
     };
 
     var moveProgressBar = function (e) {
@@ -221,7 +245,7 @@ var Player = function () {
         };
     };
 
-    var loadPlayer = function() {
+    var loadPlayer = function () {
         toggle(that.elements.preload).hide();
         toggle(that.elements.thumb).show();
         toggle(that.elements.play).show();
@@ -248,6 +272,7 @@ var Player = function () {
 
     var events = function () {
         that.elements.mask.addEventListener('click', that.toggleState);
+        that.elements.play.addEventListener('click', that.toggleState);
         that.elements.progress.addEventListener('mousedown', that.changeVideoTime);
         that.elements.progress.addEventListener('mousemove', that.changeVideoTime);
         that.elements.progress.addEventListener('mouseup', that.changeVideoTime);

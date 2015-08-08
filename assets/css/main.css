@@ -5816,14 +5816,17 @@ button.close {
   .video-container .mask {
     display: block;
     z-index: 4;
-    cursor: pointer; }
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.3); }
+  .video-container .playing .mask {
+    background-color: transparent; }
   .video-container .play-icon, .video-container .mute-icon {
     width: 100%;
     height: 100%;
     text-align: center;
     color: #fff; }
   .video-container .play {
-    z-index: 2;
+    z-index: 4;
     width: 80px;
     height: 80px;
     border-radius: 100%;
@@ -5841,7 +5844,7 @@ button.close {
       font-size: 20px;
       line-height: 20px; }
   .video-container .preload {
-    z-index: 3;
+    z-index: 5;
     width: 32px;
     height: 32px;
     display: block; }

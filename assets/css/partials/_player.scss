@@ -25,6 +25,11 @@
     display: block;
     z-index: 4;
     cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .playing .mask {
+    background-color: transparent;
   }
 
   .play-icon, .mute-icon {
@@ -37,7 +42,7 @@
   .play {
     $size: 80px;
 
-    z-index: 2;
+    z-index: 4;
     width: $size;
     height: $size;
     border-radius: 100%;
@@ -65,7 +70,7 @@
   }
 
   .preload {
-    z-index: 3;
+    z-index: 5;
     width: 32px;
     height: 32px;
     display: block;
