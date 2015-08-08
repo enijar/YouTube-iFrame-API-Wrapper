@@ -3,7 +3,6 @@ var Player = function () {
     // TODO: Add mute button.
     // TODO: Add quality control (480p, 720p, etc.).
     // TODO: Make progress bar draggable.
-    // TODO: Remove jQuery dependency.
     // TODO: Add user callbacks.
 
     const UNSTARTED = -1;
@@ -45,23 +44,8 @@ var Player = function () {
             }
         }
 
-        getElements();
-        preLoad();
-    };
-
-    this.play = function () {
-        if (that.loaded && (that.video.state === PAUSED || that.video.state === UNSTARTED)) {
-            that.video.play();
-            toggle(that.elements.play).hide();
-            toggle(that.elements.thumb).hide();
-        }
-    };
-
-    this.pause = function () {
-        if (that.loaded && that.video.state === PLAYING) {
-            that.video.pause();
-            toggle(that.elements.play).show();
-        }
+        setElements();
+        loadVideo();
     };
 
     this.video = {
@@ -89,6 +73,21 @@ var Player = function () {
         },
         currentTime: function () {
             return that.player['getCurrentTime']();
+        }
+    };
+
+    this.play = function () {
+        if (that.loaded && (that.video.state === PAUSED || that.video.state === UNSTARTED)) {
+            that.video.play();
+            toggle(that.elements.play).hide();
+            toggle(that.elements.thumb).hide();
+        }
+    };
+
+    this.pause = function () {
+        if (that.loaded && that.video.state === PLAYING) {
+            that.video.pause();
+            toggle(that.elements.play).show();
         }
     };
 
@@ -147,10 +146,8 @@ var Player = function () {
 
             that.video.pause();
             that.video.seek(0);
-            that.elements.progressBar.css({width: '100%'});
+            that.elements.progressBar.style.width = '100%';
         }
-
-        console.log(that.video.state);
     };
 
     this.toggleState = function () {
@@ -167,28 +164,30 @@ var Player = function () {
         if (that.loaded && (that.video.duration() !== that.video.currentTime())) {
             that.seeking = true;
 
-            var percentage = (100 / $(this).closest('.progress').width()) * (e.pageX - $(this).parent().offset().left);
+            var offsetLeft = e.clientX - this.parentNode.getBoundingClientRect().left;
+
+            var percentage = (100 / that.elements.progress.offsetWidth) * offsetLeft;
             var time = (that.video.duration() / 100) * percentage;
 
             that.video.seek(time);
-            that.elements.progressBar.css({width: percentage + '%'});
+            that.elements.progressBar.style.width = percentage + '%';
         }
     };
 
     var updateProgressBar = function () {
         that.playerProgressBarInterval = setInterval(function () {
             var percentage = ((100 / that.video.duration()) * that.video.currentTime());
-            that.elements.progressBar.css({width: percentage + '%'});
+            that.elements.progressBar.style.width = percentage + '%';
         }, (1000 / that.options.fps));
     };
 
-    var preLoad = function () {
-        that.elements.iframe.show();
+    var loadVideo = function () {
+        toggle(that.elements.iframe).show();
 
         var thumb = new Image;
         thumb.src = 'http://img.youtube.com/vi/' + that.options.id + '/maxresdefault.jpg';
         thumb.onload = function () {
-            that.elements.preload.hide();
+            toggle(that.elements.preload).hide();
             toggle(that.elements.thumb).show();
             toggle(that.elements.play).show();
 
@@ -206,28 +205,28 @@ var Player = function () {
     var toggle = function (element) {
         return {
             hide: function () {
-                element.hide();
+                element.style.display = 'none';
             },
             show: function () {
-                element.show();
+                element.style.display = 'block';
             }
         };
     };
 
-    var getElements = function () {
-        that.elements.player = that.options.player || $('#' + that.options.id);
-        that.elements.mask = that.options.mask || that.elements.player.find('.mask');
-        that.elements.play = that.options.play || that.elements.player.find('.play');
-        that.elements.thumb = that.options.thumb || that.elements.player.find('.thumb');
-        that.elements.iframe = that.options.iframe || that.elements.player.find('.iframe');
-        that.elements.preload = that.options.preload || that.elements.player.find('.preload');
-        that.elements.progress = that.options.progress || that.elements.player.find('.progress');
-        that.elements.progressBar = that.options.progressBar || that.elements.player.find('.progress-bar');
+    var setElements = function () {
+        that.elements.player = that.options.player || document.getElementById(that.options.id);
+        that.elements.mask = that.options.mask || that.elements.player.querySelector('.mask');
+        that.elements.play = that.options.play || that.elements.player.querySelector('.play');
+        that.elements.thumb = that.options.thumb || that.elements.player.querySelector('.thumb');
+        that.elements.iframe = that.options.iframe || that.elements.player.querySelector('.iframe');
+        that.elements.preload = that.options.preload || that.elements.player.querySelector('.preload');
+        that.elements.progress = that.options.progress || that.elements.player.querySelector('.progress');
+        that.elements.progressBar = that.options.progressBar || that.elements.player.querySelector('.progress-bar');
     };
 
     var events = function () {
-        that.elements.mask.on('click', that.toggleState);
-        that.elements.progress.on('click', that.changeVideoTime);
+        that.elements.mask.addEventListener('click', that.toggleState);
+        that.elements.progress.addEventListener('click', that.changeVideoTime);
     };
 
 };

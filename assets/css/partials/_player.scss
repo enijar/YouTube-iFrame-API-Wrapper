@@ -82,7 +82,7 @@
 
     .progress-bar {
       background-color: #E62117;
-      @include transition(width .1s ease-out);
+      @include transition(none);
     }
   }
 }

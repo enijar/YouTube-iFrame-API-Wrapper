@@ -5855,8 +5855,8 @@ button.close {
     cursor: pointer; }
     .video-container .progress .progress-bar {
       background-color: #E62117;
-      -webkit-transition: width 0.1s ease-out;
-      -o-transition: width 0.1s ease-out;
-      transition: width 0.1s ease-out; }
+      -webkit-transition: none;
+      -o-transition: none;
+      transition: none; }
 
 /*# sourceMappingURL=main.css.map */
