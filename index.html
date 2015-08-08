@@ -73,33 +73,15 @@
             function onYouTubeIframeAPIReady() {
                 (new Player).init({
                     id: 'ShUyfk4QB-8',
-                    onPlay: function() {
-                        console.log('onPlay()');
-                    },
-                    onPlaying: function(time) {
-                        console.log('onPlaying()', time);
-                    },
-                    onPause: function() {
-                        console.log('onPause()');
-                    },
-                    onMute: function() {
-                        console.log('onMute()');
-                    },
-                    onUnMute: function() {
-                        console.log('onUnMute()');
-                    },
-                    onEnd: function() {
-                        console.log('onEnd()');
-                    },
-                    onSeekStart: function() {
-                        console.log('onSeekStart()');
-                    },
-                    onSeeking: function(time) {
-                        console.log('onSeeking()', time);
-                    },
-                    onSeekEnd: function() {
-                        console.log('onSeekEnd()');
-                    }
+                    onPlay: function(player) {},
+                    onPlaying: function(player) {},
+                    onPause: function(player) {},
+                    onMute: function(player) {},
+                    onUnMute: function(player) {},
+                    onEnd: function(player) {},
+                    onSeekStart: function(player) {},
+                    onSeeking: function(player, time) {},
+                    onSeekEnd: function(player) {}
                 });
 
                 (new Player).init({id: 'mcxFbmwluYw'});

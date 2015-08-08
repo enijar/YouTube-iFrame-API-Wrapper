@@ -1,7 +1,6 @@
 var Player = function () {
 
     // TODO: Add quality control (480p, 720p, etc.).
-    // TODO: Add user callbacks.
     // TODO: Add second progress bar to show buffered amount.
     // TODO: Research why "Untrusted origin: chrome-extension://..." warning is logged. (Google Chrome Cast?)
 
@@ -19,6 +18,7 @@ var Player = function () {
     this.reset = false;
     this.playerProgressBarInterval = undefined;
     this.elements = {};
+    this.callbackObject = {};
 
     this.options = {
         fps: 24,
@@ -45,6 +45,11 @@ var Player = function () {
 
         setElements();
         loadVideo();
+
+        that.callbackObject = {
+            play: that.play,
+            pause: that.pause
+        };
     };
 
     this.video = {
@@ -87,7 +92,7 @@ var Player = function () {
             that.video.play();
 
             if(that.options['onPlay']) {
-                that.options['onPlay']();
+                that.options['onPlay'](that.callbackObject);
             }
         }
     };
@@ -98,7 +103,7 @@ var Player = function () {
             that.video.pause();
 
             if(that.options['onPause']) {
-                that.options['onPause']();
+                that.options['onPause'](that.callbackObject);
             }
 
             removeClass(that.elements.mask.parentNode, 'playing');
@@ -164,7 +169,7 @@ var Player = function () {
             that.video.seek(0);
 
             if(that.options['onEnd']) {
-                that.options['onEnd']();
+                that.options['onEnd'](that.callbackObject);
             }
 
             that.elements.progressBar.style.width = '100%';
@@ -187,7 +192,7 @@ var Player = function () {
                 that.video.unMute();
 
                 if(that.options['onUnMute']) {
-                    that.options['onUnMute']();
+                    that.options['onUnMute'](that.callbackObject);
                 }
 
                 removeClass(that.elements.mask.parentNode, 'muted');
@@ -195,7 +200,7 @@ var Player = function () {
                 that.video.mute();
 
                 if(that.options['onMute']) {
-                    that.options['onMute']();
+                    that.options['onMute'](that.callbackObject);
                 }
 
                 addClass(that.elements.mask.parentNode, 'muted');
@@ -210,7 +215,7 @@ var Player = function () {
             that.seeking = true;
 
             if(that.options['onSeekStart']) {
-                that.options['onSeekStart']();
+                that.options['onSeekStart'](that.callbackObject);
             }
 
             that.pause();
@@ -220,7 +225,7 @@ var Player = function () {
         if (e.type === 'mouseup' || e.type === 'mouseleave') {
             if (that.seeking) {
                 if(that.options['onSeekEnd']) {
-                    that.options['onSeekEnd']();
+                    that.options['onSeekEnd'](that.callbackObject);
                 }
 
                 that.play();
@@ -233,7 +238,7 @@ var Player = function () {
             moveProgressBar(e);
 
             if(that.options['onSeeking']) {
-                that.options['onSeeking'](that.video.currentTime());
+                that.options['onSeeking'](that.callbackObject, that.video.currentTime());
             }
         }
     };
@@ -272,7 +277,7 @@ var Player = function () {
                 that.elements.progressBar.style.width = percentage + '%';
 
                 if(that.options['onPlaying']) {
-                    that.options['onPlaying'](that.video.currentTime());
+                    that.options['onPlaying'](that.callbackObject, that.video.currentTime());
                 }
             }
         }, (1000 / that.options.fps));
