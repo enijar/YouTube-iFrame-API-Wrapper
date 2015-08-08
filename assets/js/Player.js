@@ -186,19 +186,19 @@ var Player = function () {
     };
 
     var toggleClass = function (element, className) {
-        if(element.classList.contains(className)) {
-            element.classList.remove(className);
+        if(element.classList.contains ? element.classList.contains(className) : element.className.match(new RegExp('\\b' + className + '\\b')) !== null) {
+            element.classList.remove ? element.classList.remove(className) : element.className.split(className).join('');
         } else {
-            element.classList.add(className);
+            element.classList.add ? element.classList.add(className) : element.className += ' ' + className;
         }
     };
 
     var addClass = function (element, className) {
-        element.classList.add(className);
+        element.classList.add ? element.classList.add(className) : element.className += ' ' + className;
     };
 
     var removeClass = function (element, className) {
-        element.className = element.className.split(className).join('');
+        element.classList.remove ? element.classList.remove(className) : element.className.split(className).join('');
     };
 
     var moveProgressBar = function (e) {
