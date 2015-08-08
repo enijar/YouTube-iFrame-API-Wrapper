@@ -2,11 +2,7 @@
   max-width: 640px;
   position: relative;
 
-  .thumb,
-  .iframe,
-  .play,
-  .preload,
-  .mask {
+  .thumb, .iframe, .play, .preload, .mask {
     display: none;
     top: 0;
     right: 0;
@@ -37,15 +33,15 @@
     height: 80px;
     border-radius: 100%;
     cursor: pointer;
-  }
 
-  .play-icon {
-    width: 100%;
-    height: 100%;
-    font-size: 80px;
-    line-height: 80px;
-    text-align: center;
-    color: #fff;
+    .play-icon {
+      width: 100%;
+      height: 100%;
+      font-size: 80px;
+      line-height: 80px;
+      text-align: center;
+      color: #fff;
+    }
   }
 
   .preload {
@@ -63,10 +59,10 @@
     position: relative;
     z-index: 5;
     cursor: pointer;
-  }
 
-  .progress-bar {
-    background-color: #E62117;
-    @include transition(width .2s ease-out);
+    .progress-bar {
+      background-color: #E62117;
+      @include transition(width .1s ease-out);
+    }
   }
 }

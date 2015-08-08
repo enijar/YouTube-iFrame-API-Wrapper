@@ -5798,11 +5798,7 @@ button.close {
 .video-container {
   max-width: 640px;
   position: relative; }
-  .video-container .thumb,
-  .video-container .iframe,
-  .video-container .play,
-  .video-container .preload,
-  .video-container .mask {
+  .video-container .thumb, .video-container .iframe, .video-container .play, .video-container .preload, .video-container .mask {
     display: none;
     top: 0;
     right: 0;
@@ -5827,13 +5823,13 @@ button.close {
     height: 80px;
     border-radius: 100%;
     cursor: pointer; }
-  .video-container .play-icon {
-    width: 100%;
-    height: 100%;
-    font-size: 80px;
-    line-height: 80px;
-    text-align: center;
-    color: #fff; }
+    .video-container .play .play-icon {
+      width: 100%;
+      height: 100%;
+      font-size: 80px;
+      line-height: 80px;
+      text-align: center;
+      color: #fff; }
   .video-container .preload {
     z-index: 3;
     width: 32px;
@@ -5847,10 +5843,10 @@ button.close {
     position: relative;
     z-index: 5;
     cursor: pointer; }
-  .video-container .progress-bar {
-    background-color: #E62117;
-    -webkit-transition: width 0.2s ease-out;
-    -o-transition: width 0.2s ease-out;
-    transition: width 0.2s ease-out; }
+    .video-container .progress .progress-bar {
+      background-color: #E62117;
+      -webkit-transition: width 0.1s ease-out;
+      -o-transition: width 0.1s ease-out;
+      transition: width 0.1s ease-out; }
 
 /*# sourceMappingURL=main.css.map */
