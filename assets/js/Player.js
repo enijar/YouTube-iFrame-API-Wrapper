@@ -1,6 +1,5 @@
 var Player = function () {
 
-    // TODO: Add mute button.
     // TODO: Add quality control (480p, 720p, etc.).
     // TODO: Add user callbacks.
     // TODO: Add second progress bar to show buffered amount.
