@@ -5820,7 +5820,7 @@ button.close {
     background-color: rgba(0, 0, 0, 0.3); }
   .video-container .playing .mask {
     background-color: transparent; }
-  .video-container .play, .video-container .mute {
+  .video-container .play, .video-container .mute, .video-container .fullscreen {
     z-index: 4;
     cursor: pointer;
     border-radius: 100%; }

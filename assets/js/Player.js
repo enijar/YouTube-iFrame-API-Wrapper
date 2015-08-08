@@ -85,6 +85,10 @@ var Player = function () {
             toggle(that.elements.play).hide();
             toggle(that.elements.thumb).hide();
             that.video.play();
+
+            if(that.options['onPlay']) {
+                that.options['onPlay']();
+            }
         }
     };
 
@@ -92,6 +96,11 @@ var Player = function () {
         if (that.loaded && that.video.state === PLAYING) {
             clearInterval(that.playerProgressBarInterval);
             that.video.pause();
+
+            if(that.options['onPause']) {
+                that.options['onPause']();
+            }
+
             removeClass(that.elements.mask.parentNode, 'playing');
             addClass(that.elements.mask.parentNode, 'paused');
             toggle(that.elements.play).show();
@@ -153,6 +162,11 @@ var Player = function () {
 
             that.video.pause();
             that.video.seek(0);
+
+            if(that.options['onEnd']) {
+                that.options['onEnd']();
+            }
+
             that.elements.progressBar.style.width = '100%';
         }
     };
@@ -169,11 +183,21 @@ var Player = function () {
 
     this.toggleMute = function () {
         if (that.loaded) {
-            if(that.video.isMuted()) {
+            if (that.video.isMuted()) {
                 that.video.unMute();
+
+                if(that.options['onUnMute']) {
+                    that.options['onUnMute']();
+                }
+
                 removeClass(that.elements.mask.parentNode, 'muted');
             } else {
                 that.video.mute();
+
+                if(that.options['onMute']) {
+                    that.options['onMute']();
+                }
+
                 addClass(that.elements.mask.parentNode, 'muted');
             }
         }
@@ -184,12 +208,21 @@ var Player = function () {
 
         if (e.type === 'mousedown') {
             that.seeking = true;
+
+            if(that.options['onSeekStart']) {
+                that.options['onSeekStart']();
+            }
+
             that.pause();
             moveProgressBar(e);
         }
 
         if (e.type === 'mouseup' || e.type === 'mouseleave') {
-            if(that.seeking) {
+            if (that.seeking) {
+                if(that.options['onSeekEnd']) {
+                    that.options['onSeekEnd']();
+                }
+
                 that.play();
                 that.seeking = false;
             }
@@ -198,11 +231,15 @@ var Player = function () {
         if (e.type === 'mousemove' && that.seeking) {
             clearInterval(that.playerProgressBarInterval);
             moveProgressBar(e);
+
+            if(that.options['onSeeking']) {
+                that.options['onSeeking'](that.video.currentTime());
+            }
         }
     };
 
     var toggleClass = function (element, className) {
-        if(element.classList.contains ? element.classList.contains(className) : element.className.match(new RegExp('\\b' + className + '\\b')) !== null) {
+        if (element.classList.contains ? element.classList.contains(className) : element.className.match(new RegExp('\\b' + className + '\\b')) !== null) {
             element.classList.remove ? element.classList.remove(className) : element.className.split(className).join('');
         } else {
             element.classList.add ? element.classList.add(className) : element.className += ' ' + className;
@@ -233,6 +270,10 @@ var Player = function () {
             if (!that.seeking && that.video.state === PLAYING) {
                 var percentage = ((100 / that.video.duration()) * that.video.currentTime());
                 that.elements.progressBar.style.width = percentage + '%';
+
+                if(that.options['onPlaying']) {
+                    that.options['onPlaying'](that.video.currentTime());
+                }
             }
         }, (1000 / that.options.fps));
     };
