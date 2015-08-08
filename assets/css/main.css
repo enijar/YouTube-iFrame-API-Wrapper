@@ -5843,6 +5843,12 @@ button.close {
     .video-container .mute .mute-icon {
       font-size: 20px;
       line-height: 20px; }
+  .video-container .isMuted {
+    display: none; }
+  .video-container .muted .notMuted {
+    display: none; }
+  .video-container .muted .isMuted {
+    display: block; }
   .video-container .preload {
     z-index: 5;
     width: 32px;

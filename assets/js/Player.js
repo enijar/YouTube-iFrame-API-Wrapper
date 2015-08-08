@@ -24,8 +24,6 @@ var Player = function () {
     this.options = {
         fps: 24,
         quality: 'hd720',
-        mutedClass: 'glyphicon-volume-off',
-        unMutedClass: 'glyphicon-volume-up',
         parameters: {
             hd: 1,
             controls: 0,
@@ -174,12 +172,10 @@ var Player = function () {
         if (that.loaded) {
             if(that.video.isMuted()) {
                 that.video.unMute();
-                removeClass(that.elements.mute.children[0], that.options.mutedClass);
-                addClass(that.elements.mute.children[0], that.options.unMutedClass);
+                removeClass(that.elements.mask.parentNode, 'muted');
             } else {
                 that.video.mute();
-                removeClass(that.elements.mute.children[0], that.options.unMutedClass);
-                addClass(that.elements.mute.children[0], that.options.mutedClass);
+                addClass(that.elements.mask.parentNode, 'muted');
             }
         }
     };

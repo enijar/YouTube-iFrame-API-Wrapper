@@ -71,6 +71,20 @@
     }
   }
 
+  .isMuted {
+    display: none;
+  }
+
+  .muted {
+    .notMuted {
+      display: none;
+    }
+
+    .isMuted {
+      display: block;
+    }
+  }
+
   .preload {
     z-index: 5;
     width: 32px;
