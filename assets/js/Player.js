@@ -125,10 +125,7 @@ var Player = function () {
                 toggle(that.elements.progress).show();
             }
 
-            if (that.seeking) {
-                that.seeking = false;
-                updateProgressBar();
-            }
+            updateProgressBar();
         }
 
         if (that.video.state === PAUSED) {
@@ -153,6 +150,8 @@ var Player = function () {
             that.video.seek(0);
             that.elements.progressBar.style.width = '100%';
         }
+
+        console.log(that.video.state);
     };
 
     this.toggleState = function () {
@@ -168,16 +167,17 @@ var Player = function () {
     this.changeVideoTime = function (e) {
         clearInterval(that.playerProgressBarInterval);
 
-        if (e.type === 'mousedown' && !that.seeking) {
+        if (e.type === 'mousedown') {
             that.seeking = true;
-            moveProgressBar(e);
+            clearInterval(that.playerProgressBarInterval);
         }
 
-        if (e.type === 'mouseup' && that.seeking) {
+        if (e.type === 'mouseup') {
             that.seeking = false;
         }
 
         if (e.type === 'mousemove' && that.seeking) {
+            clearInterval(that.playerProgressBarInterval);
             moveProgressBar(e);
         }
     };
@@ -195,8 +195,10 @@ var Player = function () {
 
     var updateProgressBar = function () {
         that.playerProgressBarInterval = setInterval(function () {
-            var percentage = ((100 / that.video.duration()) * that.video.currentTime());
-            that.elements.progressBar.style.width = percentage + '%';
+            if(!that.seeking && that.video.state === PLAYING) {
+                var percentage = ((100 / that.video.duration()) * that.video.currentTime());
+                that.elements.progressBar.style.width = percentage + '%';
+            }
         }, (1000 / that.options.fps));
     };
 
