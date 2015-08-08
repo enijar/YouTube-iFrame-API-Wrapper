@@ -201,6 +201,7 @@ var Player = function () {
 
     var getElements = function () {
         that.elements.player        = that.options.player       || $('#' + that.options.id);
+        that.elements.mask          = that.options.mask         || that.elements.player.find('.mask');
         that.elements.play          = that.options.play         || that.elements.player.find('.play');
         that.elements.thumb         = that.options.thumb        || that.elements.player.find('.thumb');
         that.elements.iframe        = that.options.iframe       || that.elements.player.find('.iframe');
@@ -210,7 +211,7 @@ var Player = function () {
     };
 
     var events = function () {
-        that.elements.player.find('.mask').on('click', that.toggleState);
-        that.elements.player.find('.progress').on('click', that.changeVideoTime);
+        that.elements.mask.on('click', that.toggleState);
+        that.elements.progress.on('click', that.changeVideoTime);
     };
 };
