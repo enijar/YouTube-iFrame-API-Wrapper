@@ -46,9 +46,13 @@
             function onYouTubeIframeAPIReady() {
                 (new Player).init({
                     id: 'ShUyfk4QB-8',
-                    onPlay: function(player) {},
+                    onPlay: function(player) {
+                        player.playButton.style.display = 'none';
+                    },
                     onPlaying: function(player) {},
-                    onPause: function(player) {},
+                    onPause: function(player) {
+                        player.playButton.style.display = 'block';
+                    },
                     onMute: function(player) {},
                     onUnMute: function(player) {},
                     onEnd: function(player) {},

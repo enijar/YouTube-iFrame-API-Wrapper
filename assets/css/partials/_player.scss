@@ -32,7 +32,8 @@
     background-color: transparent;
   }
 
-  .play, .mute, .fullscreen {
+  .play, .mute {
+    display: block;
     z-index: 4;
     cursor: pointer;
     border-radius: 100%;
@@ -93,7 +94,6 @@
   }
 
   .progress {
-    display: none;
     border-radius: 0;
     box-shadow: none;
     height: 15px;

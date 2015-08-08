@@ -49,7 +49,14 @@ var Player = function () {
         that.callbackObject = {
             play: that.play,
             pause: that.pause,
-            time: that.video.currentTime
+            time: that.video.currentTime,
+            thumb: that.elements.thumb,
+            iframe: that.elements.iframe,
+            preload: that.elements.preload,
+            progress: that.elements.progress,
+            progressBar: that.elements.progressBar,
+            playButton: that.elements.play,
+            muteButton: that.elements.mute
         };
     };
 
@@ -88,7 +95,6 @@ var Player = function () {
         if (that.loaded && (that.video.state === PAUSED || that.video.state === UNSTARTED || that.seeking)) {
             removeClass(that.elements.mask.parentNode, 'paused');
             addClass(that.elements.mask.parentNode, 'playing');
-            toggle(that.elements.play).hide();
             toggle(that.elements.thumb).hide();
             that.video.play();
 
@@ -109,7 +115,6 @@ var Player = function () {
 
             removeClass(that.elements.mask.parentNode, 'playing');
             addClass(that.elements.mask.parentNode, 'paused');
-            toggle(that.elements.play).show();
         }
     };
 
@@ -140,22 +145,7 @@ var Player = function () {
                 that.reset = false;
             }
 
-            if (!that.reset) {
-                toggle(that.elements.play).hide();
-                toggle(that.elements.progress).show();
-            }
-
             updateProgressBar();
-        }
-
-        if (that.video.state === PAUSED) {
-            if (!that.seeking) {
-                toggle(that.elements.play).show();
-
-                if (!that.reset) {
-                    toggle(that.elements.progress).show();
-                }
-            }
         }
 
         if (that.video.state === ENDED) {
@@ -163,8 +153,6 @@ var Player = function () {
 
             clearInterval(that.playerProgressBarInterval);
             toggle(that.elements.thumb).show();
-            toggle(that.elements.play).show();
-            toggle(that.elements.progress).hide();
 
             that.video.pause();
             that.video.seek(0);
@@ -307,8 +295,6 @@ var Player = function () {
     var loadPlayer = function () {
         toggle(that.elements.preload).hide();
         toggle(that.elements.thumb).show();
-        toggle(that.elements.play).show();
-        toggle(that.elements.mute).show();
 
         that.player = new YT.Player('video-' + that.options.id, {
             videoId: that.options.id,

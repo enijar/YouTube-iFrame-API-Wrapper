@@ -5820,7 +5820,8 @@ button.close {
     background-color: rgba(0, 0, 0, 0.3); }
   .video-container .playing .mask {
     background-color: transparent; }
-  .video-container .play, .video-container .mute, .video-container .fullscreen {
+  .video-container .play, .video-container .mute {
+    display: block;
     z-index: 4;
     cursor: pointer;
     border-radius: 100%; }
@@ -5855,7 +5856,6 @@ button.close {
     height: 32px;
     display: block; }
   .video-container .progress {
-    display: none;
     border-radius: 0;
     box-shadow: none;
     height: 15px;
