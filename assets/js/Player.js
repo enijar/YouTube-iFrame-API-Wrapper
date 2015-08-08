@@ -220,7 +220,7 @@ var Player = function () {
         };
     };
 
-    var loadPlayer = function(e) {
+    var loadPlayer = function() {
         toggle(that.elements.preload).hide();
         toggle(that.elements.thumb).show();
         toggle(that.elements.play).show();
