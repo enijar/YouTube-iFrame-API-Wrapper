@@ -77,7 +77,7 @@ var Player = function () {
     };
 
     this.play = function () {
-        if (that.loaded && (that.video.state === PAUSED || that.video.state === UNSTARTED)) {
+        if (that.loaded && (that.video.state === PAUSED || that.video.state === UNSTARTED || that.seeking)) {
             that.video.play();
             toggle(that.elements.play).hide();
             toggle(that.elements.thumb).hide();
@@ -86,6 +86,7 @@ var Player = function () {
 
     this.pause = function () {
         if (that.loaded && that.video.state === PLAYING) {
+            clearInterval(that.playerProgressBarInterval);
             that.video.pause();
             toggle(that.elements.play).show();
         }
@@ -165,11 +166,12 @@ var Player = function () {
 
         if (e.type === 'mousedown') {
             that.seeking = true;
-            clearInterval(that.playerProgressBarInterval);
+            that.pause();
             moveProgressBar(e);
         }
 
         if (e.type === 'mouseup') {
+            that.play();
             that.seeking = false;
         }
 
