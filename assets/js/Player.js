@@ -4,6 +4,7 @@ var Player = function () {
     // TODO: Add quality control (480p, 720p, etc.).
     // TODO: Add user callbacks.
     // TODO: Add second progress bar to show buffered amount.
+    // TODO: Research why "Untrusted origin: chrome-extension://..." warning is logged. (Google Chrome Cast?)
 
     const UNSTARTED = -1;
     const ENDED = 0;
