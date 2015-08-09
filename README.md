@@ -94,4 +94,4 @@ is alerted.
 
 ![Holding Screen](https://i.imgur.com/XXHTUPd.png)
 
-![Playing Screen](https://i.imgur.com/tf3TAEt.png)
+![Playing Screen](https://i.imgur.com/smNlLwe.png)
