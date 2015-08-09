@@ -5798,7 +5798,8 @@ button.close {
     display: none !important; } }
 .video-container {
   max-width: 640px;
-  position: relative; }
+  position: relative;
+  margin: 0 auto; }
   .video-container .thumb, .video-container .iframe, .video-container .play, .video-container .mute, .video-container .preload, .video-container .mask {
     display: none;
     top: 0;

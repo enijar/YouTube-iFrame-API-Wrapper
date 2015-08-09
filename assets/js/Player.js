@@ -3,12 +3,12 @@ var Player = function () {
     // TODO: Add quality control (480p, 720p, etc.).
     // TODO: Research why "Untrusted origin: chrome-extension://..." warning is logged. (Google Chrome Cast?)
 
-    const UNSTARTED = -1;
-    const ENDED = 0;
-    const PLAYING = 1;
-    const PAUSED = 2;
-    const BUFFERING = 3;
-    const CUED = 5;
+    var UNSTARTED = -1;
+    var ENDED = 0;
+    var PLAYING = 1;
+    var PAUSED = 2;
+    var BUFFERING = 3;
+    var CUED = 5;
 
     var that = this;
 
