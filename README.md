@@ -38,10 +38,11 @@ is needed. This example used a YouTube video id of `ShUyfk4QB-8`.
 </div>
 ```
 
-Include YouTube's iFrame API.
+Include YouTube's iFrame API and the Player class.
 
 ```html
 <script src="//www.youtube.com/iframe_api"></script>
+<script src="path/to/Player.min.js"></script>
 ```
 
 Add the onYouTubeIframeAPIReady that the iFrame API will call when it's loaded. Then instantiate the 
