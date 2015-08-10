@@ -109,8 +109,8 @@ var Player = function () {
 
     this.pause = function () {
         if (that.loaded && that.video.state === PLAYING) {
-            clearInterval(that.playerProgressBarInterval);
             that.video.pause();
+            clearInterval(that.playerProgressBarInterval);
 
             if(that.options['onPause']) {
                 that.options['onPause'](that.callbackObject);
@@ -158,11 +158,11 @@ var Player = function () {
         if (that.video.state === ENDED) {
             that.reset = true;
 
-            clearInterval(that.playerProgressBarInterval);
             toggle(that.elements.thumb).show();
 
             that.video.pause();
             that.video.seek(0);
+            clearInterval(that.playerProgressBarInterval);
 
             if(that.options['onEnd']) {
                 that.options['onEnd'](that.callbackObject);
