@@ -1,6 +1,5 @@
 var Player = function () {
 
-    // TODO: Fix progress bar bug that stops incrementing the progress bar sporadically unless clicked.
     // TODO: Research why "Untrusted origin: chrome-extension://..." warning is logged. (Google Chrome Cast?)
     // TODO: Add quality control (480p, 720p, etc.).
 
@@ -100,6 +99,7 @@ var Player = function () {
             addClass(that.elements.mask.parentNode, 'playing');
             toggle(that.elements.thumb).hide();
             that.video.play();
+            updateProgressBar();
 
             if(that.options['onPlay']) {
                 that.options['onPlay'](that.callbackObject);
