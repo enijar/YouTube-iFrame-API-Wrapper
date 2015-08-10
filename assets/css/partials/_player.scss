@@ -1,6 +1,7 @@
 .video-container {
   max-width: 640px;
   position: relative;
+  margin: 0 auto;
 
   .thumb, .iframe, .play, .mute, .preload, .mask {
     display: none;

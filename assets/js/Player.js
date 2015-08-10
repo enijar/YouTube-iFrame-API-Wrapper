@@ -1,14 +1,15 @@
 var Player = function () {
 
-    // TODO: Add quality control (480p, 720p, etc.).
+    // TODO: Fix progress bar bug that stops incrementing the progress bar sporadically unless clicked.
     // TODO: Research why "Untrusted origin: chrome-extension://..." warning is logged. (Google Chrome Cast?)
+    // TODO: Add quality control (480p, 720p, etc.).
 
-    const UNSTARTED = -1;
-    const ENDED = 0;
-    const PLAYING = 1;
-    const PAUSED = 2;
-    const BUFFERING = 3;
-    const CUED = 5;
+    var UNSTARTED = -1;
+    var ENDED = 0;
+    var PLAYING = 1;
+    var PAUSED = 2;
+    var BUFFERING = 3;
+    var CUED = 5;
 
     var that = this;
 
@@ -30,7 +31,7 @@ var Player = function () {
             iv_load_policy: 3,
             rel: 0,
             disablekb: 1,
-            origin: 'http://james.local'
+            html5: 1
         }
     };
 
@@ -323,14 +324,22 @@ var Player = function () {
         that.elements.progressBar = that.options.progressBar || document.querySelector('#' + that.options.id + ' .progress-bar');
     };
 
+    var addEvent = function(element, event, callback) {
+        if(element.addEventListener) {
+            element.addEventListener(event, callback);
+        } else {
+            element.attachEvent(event, callback);
+        }
+    };
+
     var events = function () {
-        that.elements.mask.addEventListener('click', that.toggleState);
-        that.elements.play.addEventListener('click', that.toggleState);
-        that.elements.mute.addEventListener('click', that.toggleMute);
-        that.elements.progress.addEventListener('mousedown', that.changeVideoTime);
-        that.elements.progress.addEventListener('mousemove', that.changeVideoTime);
-        that.elements.progress.addEventListener('mouseleave', that.changeVideoTime);
-        that.elements.progress.addEventListener('mouseup', that.changeVideoTime);
+        addEvent(that.elements.mask, 'click', that.toggleState);
+        addEvent(that.elements.play, 'click', that.toggleState);
+        addEvent(that.elements.mute, 'click', that.toggleMute);
+        addEvent(that.elements.progress, 'mousedown', that.changeVideoTime);
+        addEvent(that.elements.progress, 'mousemove', that.changeVideoTime);
+        addEvent(that.elements.progress, 'mouseleave', that.changeVideoTime);
+        addEvent(that.elements.progress, 'mouseup', that.changeVideoTime);
     };
 
 };
