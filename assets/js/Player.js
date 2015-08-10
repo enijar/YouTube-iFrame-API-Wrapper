@@ -229,7 +229,6 @@ var Player = function () {
         }
 
         if (e.type === 'mousemove' && that.seeking) {
-            clearInterval(that.playerProgressBarInterval);
             moveProgressBar(e);
 
             if(that.options['onSeeking']) {
