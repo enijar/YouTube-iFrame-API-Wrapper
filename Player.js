@@ -8,7 +8,6 @@ var Player = function () {
     var PLAYING = 1;
     var PAUSED = 2;
     var BUFFERING = 3;
-    var CUED = 5;
 
     var that = this;
 
