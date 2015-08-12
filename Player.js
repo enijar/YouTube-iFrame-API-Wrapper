@@ -95,6 +95,7 @@ var Player = function () {
     this.play = function () {
         if (that.loaded && (that.video.state === PAUSED || that.video.state === UNSTARTED || that.seeking)) {
             removeClass(that.elements.mask.parentNode, 'paused');
+            removeClass(that.elements.mask.parentNode, 'ended');
             addClass(that.elements.mask.parentNode, 'playing');
             toggle(that.elements.thumb).hide();
             that.video.play();
@@ -158,16 +159,17 @@ var Player = function () {
             that.reset = true;
 
             toggle(that.elements.thumb).show();
+            clearInterval(that.playerProgressBarInterval);
+            removeClass(that.elements.mask.parentNode, 'playing');
+            addClass(that.elements.mask.parentNode, 'ended');
 
             that.video.pause();
             that.video.seek(0);
-            clearInterval(that.playerProgressBarInterval);
+            that.elements.progressBar.style.width = '0%';
 
             if (that.options['onEnd']) {
                 that.options['onEnd'](that.callbackObject);
             }
-
-            that.elements.progressBar.style.width = '100%';
         }
     };
 

@@ -56,7 +56,9 @@
                     },
                     onMute: function(player) {},
                     onUnMute: function(player) {},
-                    onEnd: function(player) {},
+                    onEnd: function(player) {
+                        player.playButton.style.display = 'block';
+                    },
                     onSeekStart: function(player) {},
                     onSeeking: function(player) {},
                     onSeekEnd: function(player) {}
