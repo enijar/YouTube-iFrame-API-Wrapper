@@ -28,7 +28,7 @@
   .video-container .play, .video-container .sound {
     z-index: 4;
     cursor: pointer;
-    background-image: url("../icons.png"); }
+    background-image: url("../img/icons.png"); }
   .video-container .play {
     width: 80px;
     height: 80px; }
