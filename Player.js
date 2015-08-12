@@ -87,7 +87,7 @@ var Player = function () {
         currentTime: function () {
             return that.player['getCurrentTime']();
         },
-        buffer: function() {
+        buffer: function () {
             return that.player['getVideoLoadedFraction']();
         }
     };
@@ -100,7 +100,7 @@ var Player = function () {
             that.video.play();
             updateProgressBar();
 
-            if(that.options['onPlay']) {
+            if (that.options['onPlay']) {
                 that.options['onPlay'](that.callbackObject);
             }
         }
@@ -111,7 +111,7 @@ var Player = function () {
             that.video.pause();
             clearInterval(that.playerProgressBarInterval);
 
-            if(that.options['onPause']) {
+            if (that.options['onPause']) {
                 that.options['onPause'](that.callbackObject);
             }
 
@@ -135,7 +135,7 @@ var Player = function () {
             that.loaded = true;
             that.seeking = false;
 
-            if(that.options['onLoaded']) {
+            if (that.options['onLoaded']) {
                 that.options['onLoaded'](that.callbackObject);
             }
 
@@ -163,7 +163,7 @@ var Player = function () {
             that.video.seek(0);
             clearInterval(that.playerProgressBarInterval);
 
-            if(that.options['onEnd']) {
+            if (that.options['onEnd']) {
                 that.options['onEnd'](that.callbackObject);
             }
 
@@ -186,7 +186,7 @@ var Player = function () {
             if (that.video.isMuted()) {
                 that.video.unMute();
 
-                if(that.options['onUnMute']) {
+                if (that.options['onUnMute']) {
                     that.options['onUnMute'](that.callbackObject);
                 }
 
@@ -194,7 +194,7 @@ var Player = function () {
             } else {
                 that.video.mute();
 
-                if(that.options['onMute']) {
+                if (that.options['onMute']) {
                     that.options['onMute'](that.callbackObject);
                 }
 
@@ -209,7 +209,7 @@ var Player = function () {
         if (e.type === 'mousedown') {
             that.seeking = true;
 
-            if(that.options['onSeekStart']) {
+            if (that.options['onSeekStart']) {
                 that.options['onSeekStart'](that.callbackObject);
             }
 
@@ -219,7 +219,7 @@ var Player = function () {
 
         if (e.type === 'mouseup' || e.type === 'mouseleave') {
             if (that.seeking) {
-                if(that.options['onSeekEnd']) {
+                if (that.options['onSeekEnd']) {
                     that.options['onSeekEnd'](that.callbackObject);
                 }
 
@@ -231,7 +231,7 @@ var Player = function () {
         if (e.type === 'mousemove' && that.seeking) {
             moveProgressBar(e);
 
-            if(that.options['onSeeking']) {
+            if (that.options['onSeeking']) {
                 that.options['onSeeking'](that.callbackObject);
             }
         }
@@ -253,9 +253,9 @@ var Player = function () {
             if (!that.seeking && that.video.state === PLAYING) {
                 var percentage = ((100 / that.video.duration()) * that.video.currentTime());
                 that.elements.progressBar.style.width = percentage + '%';
-                that.elements.bufferBar.style.width = (that.video.buffer()*100) + '%';
+                that.elements.bufferBar.style.width = (that.video.buffer() * 100) + '%';
 
-                if(that.options['onPlaying']) {
+                if (that.options['onPlaying']) {
                     that.options['onPlaying'](that.callbackObject);
                 }
             }
@@ -315,8 +315,8 @@ var Player = function () {
         that.elements.progressBar = that.options.progressBar || document.querySelector('#' + that.options.id + ' .progress-bar');
     };
 
-    var addEvent = function(element, event, callback) {
-        if(element.addEventListener) {
+    var addEvent = function (element, event, callback) {
+        if (element.addEventListener) {
             element.addEventListener(event, callback);
         } else {
             element.attachEvent(event, callback);
