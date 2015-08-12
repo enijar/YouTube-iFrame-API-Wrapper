@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-us">
-  <head>
+<head>
     <meta charset="UTF-8">
     <title>Youtube iFrame API Wrapper by Enijar</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,121 +8,170 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
-  </head>
-  <body>
-    <section class="page-header">
-      <h1 class="project-name">Youtube iFrame API Wrapper</h1>
-      <h2 class="project-tagline">A convenient way to add custom functionality and styles to YouTube&#39;s video player using the iFrame API provided by Google.</h2>
-      <a href="https://github.com/Enijar/YouTube-iFrame-API-Wrapper" class="btn">View on GitHub</a>
-      <a href="https://github.com/Enijar/YouTube-iFrame-API-Wrapper/zipball/master" class="btn">Download .zip</a>
-      <a href="https://github.com/Enijar/YouTube-iFrame-API-Wrapper/tarball/master" class="btn">Download .tar.gz</a>
-    </section>
+</head>
+<body>
+<section class="main-content">
+    <h1>
+        <a id="youtube-iframe-api-wrapper" class="anchor" href="#youtube-iframe-api-wrapper" aria-hidden="true"><span
+                class="octicon octicon-link"></span></a>YouTube iFrame API Wrapper</h1>
 
-    <section class="main-content">
-      <h1>
-<a id="youtube-iframe-api-wrapper" class="anchor" href="#youtube-iframe-api-wrapper" aria-hidden="true"><span class="octicon octicon-link"></span></a>YouTube iFrame API Wrapper</h1>
+    <p>A convenient way to add custom functionality and styles to YouTube's video player using the iFrame API
+        provided by YouTube.</p>
 
-<p>A convenient way to add custom functionality and styles to YouTube's video player using the iFrame API 
-provided by YouTube.</p>
+    <blockquote>
+        <p><strong><em>Warning</em></strong> Still in development. Please report any bugs or issues.</p>
+    </blockquote>
 
-<blockquote>
-<p><strong><em>Warning</em></strong> Still in development. Please report any bugs or issues.</p>
-</blockquote>
+    <h3>
+        <a id="basic-usage" class="anchor" href="#basic-usage" aria-hidden="true"><span
+                class="octicon octicon-link"></span></a>Basic Usage</h3>
 
-<h3>
-<a id="basic-usage" class="anchor" href="#basic-usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Basic Usage</h3>
+    <p>Add the template wherever you want the video to appear on your page, padding in the video id wherever it
+        is needed. This example used a YouTube video id of <code>ShUyfk4QB-8</code>.</p>
 
-<p>Add the template wherever you want the video to appear on your page, padding in the video id wherever it 
-is needed. This example used a YouTube video id of <code>ShUyfk4QB-8</code>.</p>
+    <div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span
+            class="pl-s"><span class="pl-pds">"</span>video-container<span class="pl-pds">"</span></span> <span
+            class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>ShUyfk4QB-8<span
+            class="pl-pds">"</span></span>&gt;
+    &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>embed-responsive embed-responsive-16by9<span
+                class="pl-pds">"</span></span>&gt;
+        &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span
+                class="pl-pds">"</span>embed-responsive-item<span class="pl-pds">"</span></span>&gt;
 
-<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>video-container<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>ShUyfk4QB-8<span class="pl-pds">"</span></span>&gt;
-    &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>embed-responsive embed-responsive-16by9<span class="pl-pds">"</span></span>&gt;
-        &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>embed-responsive-item<span class="pl-pds">"</span></span>&gt;
+            &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>mask<span
+                class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
+            &lt;<span class="pl-ent">img</span> <span class="pl-e">src</span>=<span class="pl-s"><span
+                class="pl-pds">"</span>assets/img/preload.gif<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span
+                class="pl-s"><span class="pl-pds">"</span>preload<span class="pl-pds">"</span></span>&gt;
 
-            &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>mask<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
-            &lt;<span class="pl-ent">img</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>assets/img/preload.gif<span class="pl-pds">"</span></span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>preload<span class="pl-pds">"</span></span>&gt;
-
-            &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>play<span class="pl-pds">"</span></span>&gt;
-                &lt;<span class="pl-ent">i</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>play-icon glyphicon glyphicon-play-circle<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">i</span>&gt;
+            &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>play<span
+                class="pl-pds">"</span></span>&gt;
+                &lt;<span class="pl-ent">i</span> <span class="pl-e">class</span>=<span class="pl-s"><span
+                class="pl-pds">"</span>play-icon glyphicon glyphicon-play-circle<span class="pl-pds">"</span></span>&gt;&lt;/<span
+                class="pl-ent">i</span>&gt;
             &lt;/<span class="pl-ent">div</span>&gt;
 
-            &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>mute<span class="pl-pds">"</span></span>&gt;
-                &lt;<span class="pl-ent">i</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>mute-icon notMuted glyphicon glyphicon-volume-up<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">i</span>&gt;
-                &lt;<span class="pl-ent">i</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>mute-icon isMuted glyphicon glyphicon-volume-off<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">i</span>&gt;
+            &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>mute<span
+                class="pl-pds">"</span></span>&gt;
+                &lt;<span class="pl-ent">i</span> <span class="pl-e">class</span>=<span class="pl-s"><span
+                class="pl-pds">"</span>mute-icon notMuted glyphicon glyphicon-volume-up<span
+                class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">i</span>&gt;
+                &lt;<span class="pl-ent">i</span> <span class="pl-e">class</span>=<span class="pl-s"><span
+                class="pl-pds">"</span>mute-icon isMuted glyphicon glyphicon-volume-off<span
+                class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">i</span>&gt;
             &lt;/<span class="pl-ent">div</span>&gt;
 
-            &lt;<span class="pl-ent">img</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>thumb<span class="pl-pds">"</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>http://img.youtube.com/vi/ShUyfk4QB-8/maxresdefault.jpg<span class="pl-pds">"</span></span>&gt;
-            &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>iframe<span class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span class="pl-pds">"</span>video-ShUyfk4QB-8<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
+            &lt;<span class="pl-ent">img</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>thumb<span
+                class="pl-pds">"</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span
+                class="pl-pds">"</span>http://img.youtube.com/vi/ShUyfk4QB-8/maxresdefault.jpg<span
+                class="pl-pds">"</span></span>&gt;
+            &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>iframe<span
+                class="pl-pds">"</span></span> <span class="pl-e">id</span>=<span class="pl-s"><span
+                class="pl-pds">"</span>video-ShUyfk4QB-8<span class="pl-pds">"</span></span>&gt;&lt;/<span
+                class="pl-ent">div</span>&gt;
 
         &lt;/<span class="pl-ent">div</span>&gt;
     &lt;/<span class="pl-ent">div</span>&gt;
 
-    &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>progress<span class="pl-pds">"</span></span>&gt;
-        &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>progress-bar<span class="pl-pds">"</span></span> <span class="pl-e">role</span>=<span class="pl-s"><span class="pl-pds">"</span>progressbar<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
+    &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span class="pl-pds">"</span>progress<span
+                class="pl-pds">"</span></span>&gt;
+        &lt;<span class="pl-ent">div</span> <span class="pl-e">class</span>=<span class="pl-s"><span
+                class="pl-pds">"</span>progress-bar<span class="pl-pds">"</span></span> <span
+                class="pl-e">role</span>=<span class="pl-s"><span class="pl-pds">"</span>progressbar<span
+                class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">div</span>&gt;
     &lt;/<span class="pl-ent">div</span>&gt;
-&lt;/<span class="pl-ent">div</span>&gt;</pre></div>
+&lt;/<span class="pl-ent">div</span>&gt;</pre>
+    </div>
 
-<p>Include YouTube's iFrame API and the Player class.</p>
+    <p>Include YouTube's iFrame API and the Player class.</p>
 
-<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>//www.youtube.com/iframe_api<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
-&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>path/to/Player.min.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
+    <div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">script</span> <span
+            class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>//www.youtube.com/iframe_api<span
+            class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;
+&lt;<span class="pl-ent">script</span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>path/to/Player.min.js<span
+                class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre>
+    </div>
 
-<p>Add the onYouTubeIframeAPIReady that the iFrame API will call when it's loaded. Then instantiate the 
-Player class and call the init method, passing in the YouTube video id and any method callbacks you want 
-(See Method Callbacks section for more information).</p>
+    <p>Add the onYouTubeIframeAPIReady that the iFrame API will call when it's loaded. Then instantiate the
+        Player class and call the init method, passing in the YouTube video id and any method callbacks you want
+        (See Method Callbacks section for more information).</p>
 
-<div class="highlight highlight-js"><pre><span class="pl-k">function</span> <span class="pl-en">onYouTubeIframeAPIReady</span>() {
-    (<span class="pl-k">new</span> <span class="pl-en">Player</span>).<span class="pl-c1">init</span>({id<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>ShUyfk4QB-8<span class="pl-pds">'</span></span>});
-}</pre></div>
+    <div class="highlight highlight-js"><pre><span class="pl-k">function</span> <span class="pl-en">onYouTubeIframeAPIReady</span>() {
+    (<span class="pl-k">new</span> <span class="pl-en">Player</span>).<span class="pl-c1">init</span>({id<span
+                class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>ShUyfk4QB-8<span
+                class="pl-pds">'</span></span>});
+}</pre>
+    </div>
 
-<h3>
-<a id="method-callbacks" class="anchor" href="#method-callbacks" aria-hidden="true"><span class="octicon octicon-link"></span></a>Method Callbacks</h3>
+    <h3>
+        <a id="method-callbacks" class="anchor" href="#method-callbacks" aria-hidden="true"><span
+                class="octicon octicon-link"></span></a>Method Callbacks</h3>
 
-<p>There are 10 method callbacks that will get called on specific events. You can use these to hoot into 
-these events and execute your own code.</p>
+    <p>There are 10 method callbacks that will get called on specific events. You can use these to hoot into
+        these events and execute your own code.</p>
 
-<div class="highlight highlight-js"><pre>(<span class="pl-k">new</span> <span class="pl-en">Player</span>).<span class="pl-c1">init</span>({
-    id<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>ShUyfk4QB-8<span class="pl-pds">'</span></span>,
-    <span class="pl-en">onLoaded</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">player</span>) {},
-    <span class="pl-en">onPlay</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">player</span>) {},
-    <span class="pl-en">onPlaying</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">player</span>) {},
-    <span class="pl-en">onPause</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">player</span>) {},
-    <span class="pl-en">onMute</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">player</span>) {},
-    <span class="pl-en">onUnMute</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">player</span>) {},
+    <div class="highlight highlight-js"><pre>(<span class="pl-k">new</span> <span class="pl-en">Player</span>).<span
+            class="pl-c1">init</span>({
+    id<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>ShUyfk4QB-8<span
+                class="pl-pds">'</span></span>,
+    <span class="pl-en">onLoaded</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span
+                class="pl-smi">player</span>) {},
+    <span class="pl-en">onPlay</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span
+                class="pl-smi">player</span>) {},
+    <span class="pl-en">onPlaying</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span
+                class="pl-smi">player</span>) {},
+    <span class="pl-en">onPause</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span
+                class="pl-smi">player</span>) {},
+    <span class="pl-en">onMute</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span
+                class="pl-smi">player</span>) {},
+    <span class="pl-en">onUnMute</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span
+                class="pl-smi">player</span>) {},
     <span class="pl-en">onEnd</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">player</span>) {},
-    <span class="pl-en">onSeekStart</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">player</span>) {},
-    <span class="pl-en">onSeeking</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">player</span>) {},
-    <span class="pl-en">onSeekEnd</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">player</span>) {}
-});</pre></div>
+    <span class="pl-en">onSeekStart</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span
+                class="pl-smi">player</span>) {},
+    <span class="pl-en">onSeeking</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span
+                class="pl-smi">player</span>) {},
+    <span class="pl-en">onSeekEnd</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span
+                class="pl-smi">player</span>) {}
+});</pre>
+    </div>
 
-<p>Here is an example. When the video is played, after 5 seconds the video is paused and the current time 
-is alerted.</p>
+    <p>Here is an example. When the video is played, after 5 seconds the video is paused and the current time
+        is alerted.</p>
 
-<div class="highlight highlight-js"><pre>(<span class="pl-k">new</span> <span class="pl-en">Player</span>).<span class="pl-c1">init</span>({
-    id<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>ShUyfk4QB-8<span class="pl-pds">'</span></span>,
-    <span class="pl-en">onPlay</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span class="pl-smi">player</span>) {
+    <div class="highlight highlight-js"><pre>(<span class="pl-k">new</span> <span class="pl-en">Player</span>).<span
+            class="pl-c1">init</span>({
+    id<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span>ShUyfk4QB-8<span
+                class="pl-pds">'</span></span>,
+    <span class="pl-en">onPlay</span><span class="pl-k">:</span> <span class="pl-k">function</span>(<span
+                class="pl-smi">player</span>) {
         <span class="pl-c1">setTimeout</span>(<span class="pl-k">function</span>() {
             player.<span class="pl-c1">pause</span>();
             <span class="pl-c1">alert</span>(player<span class="pl-c1">.time</span>());
         }, <span class="pl-c1">5000</span>);
     }
-});</pre></div>
+});</pre>
+    </div>
 
-<h3>
-<a id="example-player-theme" class="anchor" href="#example-player-theme" aria-hidden="true"><span class="octicon octicon-link"></span></a>Example Player Theme</h3>
+    <h3>
+        <a id="example-player-theme" class="anchor" href="#example-player-theme" aria-hidden="true"><span
+                class="octicon octicon-link"></span></a>Example Player Theme</h3>
 
-<p><img src="https://i.imgur.com/XXHTUPd.png" alt="Holding Screen"></p>
+    <p><img src="https://i.imgur.com/XXHTUPd.png" alt="Holding Screen"></p>
 
-<p><img src="https://i.imgur.com/smNlLwe.png" alt="Playing Screen"></p>
+    <p><img src="https://i.imgur.com/smNlLwe.png" alt="Playing Screen"></p>
 
-      <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/Enijar/YouTube-iFrame-API-Wrapper">Youtube iFrame API Wrapper</a> is maintained by <a href="https://github.com/Enijar">Enijar</a>.</span>
+    <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/Enijar/YouTube-iFrame-API-Wrapper">Youtube iFrame
+            API Wrapper</a> is maintained by <a href="https://github.com/Enijar">Enijar</a>.</span>
 
-        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
-      </footer>
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a
+                href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a
+                href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+    </footer>
 
-    </section>
+</section>
 
-  
-  </body>
+
+</body>
 </html>
