@@ -42,7 +42,7 @@ Include YouTube's iFrame API and the Player class.
 
 ```html
 <script src="//www.youtube.com/iframe_api"></script>
-<script src="path/to/Player.min.js"></script>
+<script src="path/to/Player.js"></script>
 ```
 
 Add the onYouTubeIframeAPIReady that the iFrame API will call when it's loaded. Then instantiate the 
