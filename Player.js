@@ -270,6 +270,7 @@ var Player = function () {
         var thumb = new Image;
         thumb.src = 'http://img.youtube.com/vi/' + that.options.id + '/maxresdefault.jpg';
         thumb.onerror = loadPlayer;
+        thumb.ontimeout = loadPlayer;
         thumb.onload = loadPlayer;
     };
 
