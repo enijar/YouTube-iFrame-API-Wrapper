@@ -55,7 +55,7 @@ var Player = function () {
             progress: that.elements.progress,
             progressBar: that.elements.progressBar,
             playButton: that.elements.play,
-            muteButton: that.elements.mute
+            soundButton: that.elements.sound
         };
     };
 
@@ -182,7 +182,7 @@ var Player = function () {
         }
     };
 
-    this.toggleMute = function () {
+    this.toggleSound = function () {
         if (that.loaded) {
             if (that.video.isMuted()) {
                 that.video.unMute();
@@ -315,7 +315,7 @@ var Player = function () {
     var setElements = function () {
         that.elements.mask = that.options.mask || document.querySelector('#' + that.options.id + ' .mask');
         that.elements.play = that.options.play || document.querySelector('#' + that.options.id + ' .play');
-        that.elements.mute = that.options.mute || document.querySelector('#' + that.options.id + ' .mute');
+        that.elements.sound = that.options.sound || document.querySelector('#' + that.options.id + ' .sound');
         that.elements.thumb = that.options.thumb || document.querySelector('#' + that.options.id + ' .thumb');
         that.elements.iframe = that.options.iframe || document.querySelector('#' + that.options.id + ' .iframe');
         that.elements.preload = that.options.preload || document.querySelector('#' + that.options.id + ' .preload');
@@ -335,7 +335,7 @@ var Player = function () {
     var events = function () {
         addEvent(that.elements.mask, 'click', that.toggleState);
         addEvent(that.elements.play, 'click', that.toggleState);
-        addEvent(that.elements.mute, 'click', that.toggleMute);
+        addEvent(that.elements.sound, 'click', that.toggleSound);
         addEvent(that.elements.progress, 'mousedown', that.changeVideoTime);
         addEvent(that.elements.progress, 'mousemove', that.changeVideoTime);
         addEvent(that.elements.progress, 'mouseleave', that.changeVideoTime);

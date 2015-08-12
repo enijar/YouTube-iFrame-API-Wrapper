@@ -19,14 +19,9 @@
                     <div class="mask"></div>
                     <img src="preload.gif" class="preload">
 
-                    <div class="play">
-                        <i class="play-icon glyphicon glyphicon-play-circle"></i>
-                    </div>
+                    <div class="play"></div>
 
-                    <div class="mute">
-                        <i class="mute-icon notMuted glyphicon glyphicon-volume-up"></i>
-                        <i class="mute-icon isMuted glyphicon glyphicon-volume-off"></i>
-                    </div>
+                    <div class="sound"></div>
 
                     <img class="thumb" src="http://img.youtube.com/vi/ShUyfk4QB-8/maxresdefault.jpg">
                     <div class="iframe" id="video-ShUyfk4QB-8"></div>
@@ -50,7 +45,7 @@
                     onLoaded: function(player) {
                         player.preload.style.display = 'none';
                         player.playButton.style.display = 'block';
-                        player.muteButton.style.display = 'block';
+                        player.soundButton.style.display = 'block';
                     },
                     onPlay: function(player) {
                         player.playButton.style.display = 'none';

@@ -3,7 +3,7 @@
   position: relative;
   margin: 0 auto; }
   .video-container .thumb, .video-container .iframe, .video-container .play,
-  .video-container .mute, .video-container .preload, .video-container .mask {
+  .video-container .sound, .video-container .preload, .video-container .mask {
     display: none;
     top: 0;
     right: 0;
@@ -25,35 +25,21 @@
     background-color: rgba(0, 0, 0, 0.3); }
   .video-container .playing .mask {
     background-color: transparent; }
-  .video-container .play, .video-container .mute {
+  .video-container .play, .video-container .sound {
     z-index: 4;
     cursor: pointer;
-    border-radius: 100%; }
-  .video-container .play-icon, .video-container .mute-icon {
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    color: #fff; }
+    background-image: url("../icons.png"); }
   .video-container .play {
     width: 80px;
     height: 80px; }
-    .video-container .play .play-icon {
-      font-size: 80px;
-      line-height: 80px; }
-  .video-container .mute {
-    width: 20px;
+  .video-container .sound {
+    width: 25px;
     height: 20px;
-    margin-left: 15px;
-    margin-bottom: 15px; }
-    .video-container .mute .mute-icon {
-      font-size: 20px;
-      line-height: 20px; }
-  .video-container .isMuted {
-    display: none; }
-  .video-container .muted .notMuted {
-    display: none; }
-  .video-container .muted .isMuted {
-    display: block; }
+    margin-left: 25px;
+    margin-bottom: 20px;
+    background-position: 0 -81px; }
+  .video-container .muted .sound {
+    background-position: 105px -81px; }
   .video-container .preload {
     z-index: 5;
     width: 32px;
@@ -84,30 +70,6 @@
  * Remove everything below this if you
  * are using Bootstrap.
  */
-@font-face {
-  font-family: 'Glyphicons Halflings';
-  src: url("../fonts/glyphicons-halflings-regular.eot");
-  src: url("../fonts/glyphicons-halflings-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/glyphicons-halflings-regular.woff2") format("woff2"), url("../fonts/glyphicons-halflings-regular.woff") format("woff"), url("../fonts/glyphicons-halflings-regular.ttf") format("truetype"), url("../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular") format("svg"); }
-.glyphicon {
-  position: relative;
-  top: 1px;
-  display: inline-block;
-  font-family: 'Glyphicons Halflings';
-  font-style: normal;
-  font-weight: normal;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; }
-
-.glyphicon-play-circle:before {
-  content: "\e029"; }
-
-.glyphicon-volume-off:before {
-  content: "\e036"; }
-
-.glyphicon-volume-up:before {
-  content: "\e038"; }
-
 .embed-responsive {
   position: relative;
   display: block;

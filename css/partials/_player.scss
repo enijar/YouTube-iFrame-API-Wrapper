@@ -4,7 +4,7 @@
   margin: 0 auto;
 
   .thumb, .iframe, .play,
-  .mute, .preload, .mask {
+  .sound, .preload, .mask {
     display: none;
     top: 0;
     right: 0;
@@ -34,57 +34,27 @@
     background-color: transparent;
   }
 
-  .play, .mute {
+  .play, .sound {
     z-index: 4;
     cursor: pointer;
-    border-radius: 100%;
-  }
-
-  .play-icon, .mute-icon {
-    width: 100%;
-    height: 100%;
-    text-align: center;
-    color: #fff;
+    background-image: url("../icons.png");
   }
 
   .play {
-    $size: 80px;
-
-    width: $size;
-    height: $size;
-
-    .play-icon {
-      font-size: $size;
-      line-height: $size;
-    }
+    width: 80px;
+    height: 80px;
   }
 
-  .mute {
-    $size: 20px;
-
-    width: $size;
-    height: $size;
-    margin-left: 15px;
-    margin-bottom: 15px;
-
-    .mute-icon {
-      font-size: $size;
-      line-height: $size;
-    }
+  .sound {
+    width: 25px;
+    height: 20px;
+    margin-left: 25px;
+    margin-bottom: 20px;
+    background-position: 0 -81px;
   }
 
-  .isMuted {
-    display: none;
-  }
-
-  .muted {
-    .notMuted {
-      display: none;
-    }
-
-    .isMuted {
-      display: block;
-    }
+  .muted .sound {
+    background-position: 105px -81px;
   }
 
   .preload {
