@@ -238,22 +238,6 @@ var Player = function () {
         }
     };
 
-    var toggleClass = function (element, className) {
-        if (element.classList.contains ? element.classList.contains(className) : element.className.match(new RegExp('\\b' + className + '\\b')) !== null) {
-            element.classList.remove ? element.classList.remove(className) : element.className.split(className).join('');
-        } else {
-            element.classList.add ? element.classList.add(className) : element.className += ' ' + className;
-        }
-    };
-
-    var addClass = function (element, className) {
-        element.classList.add ? element.classList.add(className) : element.className += ' ' + className;
-    };
-
-    var removeClass = function (element, className) {
-        element.classList.remove ? element.classList.remove(className) : element.className.split(className).join('');
-    };
-
     var moveProgressBar = function (e) {
         if (that.loaded && (that.video.duration() !== that.video.currentTime())) {
             var offsetLeft = e.clientX - that.elements.progress.getBoundingClientRect().left;
@@ -288,17 +272,6 @@ var Player = function () {
         thumb.onload = loadPlayer;
     };
 
-    var toggle = function (element) {
-        return {
-            hide: function () {
-                element.style.display = 'none';
-            },
-            show: function () {
-                element.style.display = 'block';
-            }
-        };
-    };
-
     var loadPlayer = function () {
         toggle(that.elements.thumb).show();
 
@@ -310,6 +283,33 @@ var Player = function () {
                 onStateChange: that.onPlayerStateChange
             }
         });
+    };
+
+    var toggleClass = function (element, className) {
+        if (element.classList.contains ? element.classList.contains(className) : element.className.match(new RegExp('\\b' + className + '\\b')) !== null) {
+            element.classList.remove ? element.classList.remove(className) : element.className.split(className).join('');
+        } else {
+            element.classList.add ? element.classList.add(className) : element.className += ' ' + className;
+        }
+    };
+
+    var addClass = function (element, className) {
+        element.classList.add ? element.classList.add(className) : element.className += ' ' + className;
+    };
+
+    var removeClass = function (element, className) {
+        element.classList.remove ? element.classList.remove(className) : element.className.split(className).join('');
+    };
+
+    var toggle = function (element) {
+        return {
+            hide: function () {
+                element.style.display = 'none';
+            },
+            show: function () {
+                element.style.display = 'block';
+            }
+        };
     };
 
     var setElements = function () {
