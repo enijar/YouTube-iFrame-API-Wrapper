@@ -2,7 +2,8 @@
   max-width: 640px;
   position: relative;
   margin: 0 auto; }
-  .video-container .thumb, .video-container .iframe, .video-container .play, .video-container .mute, .video-container .preload, .video-container .mask {
+  .video-container .thumb, .video-container .iframe, .video-container .play,
+  .video-container .mute, .video-container .preload, .video-container .mask {
     display: none;
     top: 0;
     right: 0;

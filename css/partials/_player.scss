@@ -3,7 +3,8 @@
   position: relative;
   margin: 0 auto;
 
-  .thumb, .iframe, .play, .mute, .preload, .mask {
+  .thumb, .iframe, .play,
+  .mute, .preload, .mask {
     display: none;
     top: 0;
     right: 0;
@@ -119,52 +120,4 @@
       background-color: #f6a5a0;
     }
   }
-}
-
-/**
- * Remove everything below this if you
- * are using Bootstrap.
- */
-@font-face {
-  font-family: 'Glyphicons Halflings';
-  src: url('../fonts/glyphicons-halflings-regular.eot');
-  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
-}
-
-.glyphicon {
-  position: relative;
-  top: 1px;
-  display: inline-block;
-  font-family: 'Glyphicons Halflings';
-  font-style: normal;
-  font-weight: normal;
-  line-height: 1;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-.glyphicon-play-circle  { &:before { content: "\e029"; } }
-.glyphicon-volume-off   { &:before { content: "\e036"; } }
-.glyphicon-volume-up    { &:before { content: "\e038"; } }
-
-.embed-responsive {
-  position: relative;
-  display: block;
-  height: 0;
-  padding: 0;
-  overflow: hidden;
-
-  .embed-responsive-item, .video-container .iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    height: 100%;
-    width: 100%;
-    border: 0;
-  }
-}
-
-.embed-responsive-16by9 {
-  padding-bottom: 56.25%;
 }
